@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         Sign in
     </div>
 </template>
