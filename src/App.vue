@@ -1,9 +1,16 @@
 <template>
-  <div>
-    <p>
-        <router-link to="/">Home</router-link>
-        <router-link to="/test">Test</router-link>
-    </p>
-    <router-view />
-  </div>
+    <div>
+        <Navigation />
+        <router-view />
+    </div>
 </template>
+
+<script>
+import Navigation from "@/components/Navigation.vue"
+
+export default {
+    components: {
+        Navigation
+    }
+}
+</script>
