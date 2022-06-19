@@ -38,7 +38,14 @@ export default {
                 signIn: 'auth/signIn'
             }),
         submit() {
-            this.signIn(this.form)
+            this.signIn(this.form).then(() => {
+                this.$router.replace({
+                    name: 'dashboard'
+                })
+            }).catch(() => {
+                // handle behaviour, validation on sing in failed
+                console.log('this failed');
+            })
         }
     }
 }

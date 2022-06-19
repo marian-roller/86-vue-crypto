@@ -65,31 +65,16 @@
             </div>
         </nav>
     </div>
-    
-    {{ user }}
 </template>
 
 <script>
     import { mapGetters} from 'vuex'
     export default {
-        // data() {
-        //     return {
-        //         user: {
-        //             name: '',
-        //             email: ''
-        //         }
-        //     }
-
-        // },
         computed: {
             ...mapGetters({
                 authenticated: 'auth/authenticated',
                 user: 'auth/user',
             }),
-        // authenticated() {
-        //     this.signIn(this.form)
-        // }
         }
-        
     }
 </script>
