@@ -18,7 +18,6 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import { mapActions } from 'vuex'
 
 export default {
@@ -35,19 +34,11 @@ export default {
         }
     },
     methods: {
-        // async submit() {
-        //     this.$store.commit('increment')
-        //     console.log(this.$store.state.count)
-            
-        //     let response = axios.post('auth/signin', this.form);
-        //     console.log(response.data);
-        // }
         ...mapActions({
                 signIn: 'auth/signIn'
             }),
         submit() {
             this.signIn(this.form)
-            
         }
     }
 }

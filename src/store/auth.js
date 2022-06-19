@@ -6,6 +6,14 @@ export default {
         token: null,
         user: null
     },
+    getters: {
+        authenticated(state) {
+            return state.token && state.user
+        },
+        user(state) {
+            return state.user
+        }
+    },
     mutations: {
         SET_TOKEN(state, data) {
             state.token = data;
@@ -33,6 +41,5 @@ export default {
                 commit('SET_USER', null);
             }
         }
-        
     },
 }
