@@ -25,7 +25,7 @@
                             </li>
                             
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Sign out</a>
+                                <a href="#" class="nav-link" @click.prevent="signOut">Sign out</a>
                             </li>
                         </template>
 
@@ -68,13 +68,25 @@
 </template>
 
 <script>
-    import { mapGetters} from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
     export default {
         computed: {
             ...mapGetters({
                 authenticated: 'auth/authenticated',
                 user: 'auth/user',
             }),
+        },
+        methods: {
+            ...mapActions({
+                signOutAction: 'auth/signOut'
+            }),
+            signOut() {
+                this.signOutAction().then(() => {
+                    this.$router.replace({
+                        name: 'home'
+                    })
+                })
+            }
         }
     }
 </script>
