@@ -4,6 +4,12 @@ import router from './router'
 import axios from 'axios'
 import { store } from './store'
 
+import "@/store/subscriber"
+
 axios.defaults.baseURL = 'http://127.0.0.1:8000/api/'
 
-createApp(App).use(router).use(store).mount('#app')
+store.dispatch('auth/attempt', localStorage.getItem('token')).then(() => {
+    createApp(App).use(router).use(store).mount('#app')
+})
+
+

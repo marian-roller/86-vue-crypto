@@ -27,19 +27,29 @@ export default {
             let response = await axios.post('auth/signin', credentials);
             return dispatch('attempt', response.data.token);
         },
-        async attempt({commit}, token) {
-            commit('SET_TOKEN', token);
+        async attempt({commit, state}, token) {
+            
+            if (token) {
+                commit('SET_TOKEN', token); 
+            }
+
+            if (!state.token) {
+                return
+            }
+            
+            // here subscriber.js listens to mutation -> and set proper headers
             try {
-                let response = await axios.get('auth/me', {
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    }
-                });
+                let response = await axios.get('auth/me');
                 commit('SET_USER', response.data);
             } catch (e) {
                 commit('SET_TOKEN', null);
                 commit('SET_USER', null);
             }
+        },
+        signOut({ commit }) {
+            axios.post('auth/signout');
+            commit('SET_TOKEN', null);
+            commit('SET_USER', null);
         }
     },
 }
