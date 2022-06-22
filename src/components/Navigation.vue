@@ -33,6 +33,9 @@
                             <li class="nav-item">
                                 <router-link to="/signin" class="nav-link">Sign in</router-link>
                             </li>
+                            <li class="nav-item">
+                                <router-link to="/register" class="nav-link">Register</router-link>
+                            </li>
                         </template>
                         
                     </ul>

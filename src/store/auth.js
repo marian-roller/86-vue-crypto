@@ -23,6 +23,11 @@ export default {
         }
     },
     actions: {
+        async register({dispatch}, credentials) {
+            let response = await axios.post('auth/register', credentials);
+            //@TODO: login user if succesfully registered
+            return true;
+        },
         async signIn({dispatch}, credentials) {
             let response = await axios.post('auth/signin', credentials);
             return dispatch('attempt', response.data.token);
