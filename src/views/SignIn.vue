@@ -22,9 +22,6 @@ import { mapActions } from 'vuex'
 
 export default {
     name: 'signin',
-    component: {
-        
-    },
     data() {
         return {
             form: {
@@ -43,8 +40,8 @@ export default {
                     name: 'dashboard'
                 })
             }).catch(() => {
-                // handle behaviour, validation on sing in failed
-                console.log('this failed');
+                // handle behaviour, validation on singin failed
+                console.log('sign in failed');
             })
         }
     }
