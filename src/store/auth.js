@@ -25,9 +25,10 @@ export default {
     actions: {
         async register({dispatch}, credentials) {
             let response = await axios.post('auth/register', credentials);
-            console.log(response.data)
+            return response.data
+            //console.log(response.data)
             //@TODO: login user if succesfully registered
-            return true;
+            // return true;
         },
         async signIn({dispatch}, credentials) {
             let response = await axios.post('auth/signin', credentials);
