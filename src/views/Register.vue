@@ -55,7 +55,6 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import { mapActions } from 'vuex'
 
     export default {
@@ -72,14 +71,16 @@ import { mapActions } from 'vuex'
     },
     methods: {
         ...mapActions({
-                register: 'auth/register'
+                register: 'auth/register',
+                signIn: 'auth/signIn'
             }),
-
         submit() {
             this.register(this.form).then(() => {
-                this.$router.replace({
-                    name: 'dashboard'
+                this.signIn(this.form).then(() => {
+                    this.$router.replace({
+                        name: 'dashboard'
                     })
+                })
             }).catch((e) => {
                 this.form.error = e.response.data.error
             })

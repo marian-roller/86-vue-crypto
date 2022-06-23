@@ -54,9 +54,9 @@ export default {
                 this.$router.replace({
                     name: 'dashboard'
                 })
-            }).catch(() => {
+            }).catch((e) => {
                 // handle behaviour, validation on singin failed
-                console.log('sign in failed');
+                console.log(e.response.data);
             })
         }
     }
