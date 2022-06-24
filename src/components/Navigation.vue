@@ -36,6 +36,11 @@
                             <li class="nav-item">
                                 <router-link to="/register" class="nav-link">Register</router-link>
                             </li>
+
+                            <li class="nav-item">
+                                <router-link to="/hash" class="nav-link">Hashing board</router-link>
+                            </li>
+
                         </template>
                         
                     </ul>
