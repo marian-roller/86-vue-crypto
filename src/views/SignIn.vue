@@ -17,6 +17,11 @@
                             <div class="form-group row">
                                 <label class="col-md-2" for="password">Password</label>
                                 <input class="form-control col-md-10" type="password" id="password" name="password" v-model="form.password">
+                                <div v-if="this.form.error" class="col-md-10 offset-md-2">
+                                    <span class="is-valid text-danger">
+                                        <small>{{ this.form.error }}</small>
+                                    </span>
+                                </div>
                             </div>
 
                             <div class="row">
@@ -41,7 +46,8 @@ export default {
         return {
             form: {
                 email: '',
-                password: ''
+                password: '',
+                error: ''
             }
         }
     },
@@ -55,8 +61,7 @@ export default {
                     name: 'dashboard'
                 })
             }).catch((e) => {
-                // handle behaviour, validation on singin failed
-                console.log(e.response.data);
+                this.form.error = 'Incorrect email or password'
             })
         }
     }
