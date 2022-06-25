@@ -16,16 +16,25 @@
                             <router-link to="/" class="nav-link active">Home</router-link>
                         </li>
 
-                        <template v-if="authenticated">
-                            <li class="nav-item">
-                                <router-link to="/dashboard" class="nav-link">Dashboard</router-link>
-                            </li>
-                            <li class="nav-item">
-                                <div class="nav-link">{{ user.name }}</div> 
-                            </li>
-                            
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" @click.prevent="signOut">Sign out</a>
+                        <li class="nav-item">
+                            <router-link to="/hash" class="nav-link">Hashing board</router-link>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav ml-auto">
+                         <template v-if="authenticated">
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   {{ user.name }}
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <router-link to="/dashboard" class="dropdown-item">Dashboard</router-link>
+
+                                    <a class="dropdown-item" href="#" @click.prevent="signOut">
+                                        Sign out
+                                    </a>
+                                </div>
                             </li>
                         </template>
 
@@ -36,39 +45,9 @@
                             <li class="nav-item">
                                 <router-link to="/register" class="nav-link">Register</router-link>
                             </li>
-
-                            <li class="nav-item">
-                                <router-link to="/hash" class="nav-link">Hashing board</router-link>
-                            </li>
-
                         </template>
-                        
+
                     </ul>
-
-                    
-                    <!-- <ul class="navbar-nav ml-auto">
-                    
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Login</a>
-                        </li>
-                    
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Register</a>
-                        </li>
-                        
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Username
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul> -->
                 </div>
             </div>
         </nav>
