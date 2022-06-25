@@ -7,14 +7,14 @@
         @change="onChange"
         >
             <option :value="null" disabled selected>Choose...</option>
-            <option v-for="item in this.algorithms" :value="item.code">{{item.label}}</option>
+            <option v-for="item in this.algorithms" :value="item">{{item}}</option>
         </select>
     </div>
 
 </template>
 
 <script>
-
+import axios from 'axios'
 export default {
     name: 'algorithms',
     props: {
@@ -22,16 +22,15 @@ export default {
     },
     data() {
         return {
-            algorithms: [
-                { code: 'md5', label: 'md5'},
-                { code: 'sha1', label: 'sha1'},
-                { code: 'sha256', label: 'sha256'}
-            ],
+            algorithms: null,
             algorithm: ''
         }
     },
-    created() {
-        // console.log(this.algorithms)
+    mounted() {
+        axios.get('hash/algos')
+            .then((response) => {
+                this.algorithms = response.data.result
+            })
     },
     methods: {
         onChange(event) {
