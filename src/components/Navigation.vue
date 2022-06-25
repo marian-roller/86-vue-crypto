@@ -19,16 +19,26 @@
                         <li class="nav-item">
                             <router-link to="/hash" class="nav-link">Hashing board</router-link>
                         </li>
+
+                       <li class="nav-item dropdown">
+                            <a id="blockchainDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Blockchain
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="blockchainDropdown">
+                                <router-link to="/block" class="dropdown-item">Block visualization</router-link>
+                            </div>
+                        </li>
                     </ul>
 
                     <ul class="navbar-nav ml-auto">
                          <template v-if="authenticated">
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a id="userDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                    {{ user.name }}
                                 </a>
 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu" aria-labelledby="userDropdown">
                                     <router-link to="/dashboard" class="dropdown-item">Dashboard</router-link>
 
                                     <a class="dropdown-item" href="#" @click.prevent="signOut">
