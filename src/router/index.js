@@ -1,6 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
 import TheWelcome from "@/components/TheWelcome.vue";
-import Hash from "@/components/Hash.vue";
+import Hash from "@/components/hash/Hash.vue";
 import Dashboard from "../views/Dashboard.vue";
 import SignIn from "../views/SignIn.vue";
 import Register from "../views/Register.vue";
