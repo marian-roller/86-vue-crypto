@@ -21,7 +21,12 @@
                         </div>
 
                         <div class="col-md-2">
-                            <div class="btn btn-secondary btn-sm d-block" @click="">Reset</div>
+                            <div 
+                            class="btn btn-secondary btn-sm d-block" 
+                            @click="clearForm"
+                            >
+                            Reset
+                            </div>
                         </div>
                     
                     </div>
@@ -44,6 +49,8 @@
                                 type="text" 
                                 class="form-control" 
                                 id="block"
+                                v-model="form.blockId"
+                                @keyup="validateBlock"
                                 >
                             </div>
                         </div>
@@ -58,7 +65,8 @@
                             id="nonce"
                             type="text"
                             class="form-control" 
-                            @keyup=""
+                            v-model="form.nonce"
+                            @keyup="validateBlock"
                             >
                         </div>
                     </div>
@@ -71,8 +79,8 @@
                             id="input"
                             class="form-control" 
                             rows="6" 
-                            
-                            @keyup=""
+                            v-model="form.input"
+                            @keyup="validateBlock"
                             ></textarea>
                         </div>
                     </div>
@@ -87,7 +95,7 @@
                             type="text"
                             class="form-control" 
                             readonly
-                            
+                            v-model="form.hash"
                             >
                         </div>
                     </div>
@@ -95,7 +103,12 @@
                 <div class="card-footer text-muted text-left">
                     <div class="row">
                         <div class="col-md-2 offset-md-2">
-                            <div class="btn btn-secondary btn-sm">Mine</div>
+                            <div 
+                            class="btn btn-secondary btn-sm"
+                            @click="mine"
+                            >
+                            Mine
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -105,8 +118,58 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: 'block',
-
+    data(){
+        return {
+            form: {
+                algorithm: 'sha256',
+                blockId: null,
+                nonce: '',
+                input: '',
+                hash: ''
+            }
+        }
+    },
+    mounted() {
+        // set block id
+        // mine
+    },
+    methods: {
+        mine() {
+            // axios to mine
+            // populate nonce field, hash field
+        },
+        clearForm() {
+            this.form.input = '';
+            this.form.nonce = '';
+            this.form.hash = '';
+        },
+        validateBlock() {
+            // set background color
+            this.sendToConvert()
+        },
+        sendToConvert() {
+            axios.post('hash/convert', 
+            {
+                algorithm: this.form.algorithm,
+                input: this.form.blockId + this.form.nonce + this.form.input,
+            })
+            .then((response) => {
+                this.form.hash = response.data.result
+            })
+        }
+    },
+    
 }
 </script>
+
+<style>
+    .bg-error {
+        background-color: pink;
+    }
+    .bg-success {
+        background-color: aquamarine;
+    }
+</style>
