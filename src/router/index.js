@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import TheWelcome from "@/components/TheWelcome.vue";
-import Hash from "@/components/Hash.vue";
+import Hash from "@/components/hash/Hash.vue";
+import Block from "@/components/blockchain/Block.vue";
 import Dashboard from "../views/Dashboard.vue";
 import SignIn from "../views/SignIn.vue";
 import Register from "../views/Register.vue";
@@ -39,6 +40,11 @@ const routes = [
         path: "/hash",
         name: "hash",
         component: Hash,
+    },
+    {
+        path: "/block",
+        name: "block",
+        component: Block,
     },
 ];
 
