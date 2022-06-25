@@ -5,6 +5,7 @@
         id="algorithm" 
         class="form-control form-control-sm" 
         @change="onChange"
+        v-model="this.value"
         >
             <option :value="null" disabled selected>Choose...</option>
             <option v-for="item in this.algorithms" :value="item">{{item}}</option>
@@ -18,7 +19,8 @@ import axios from 'axios'
 export default {
     name: 'algorithms',
     props: {
-        chooseAlgorithm: Function
+        chooseAlgorithm: Function,
+        value: String
     },
     data() {
         return {

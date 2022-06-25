@@ -12,7 +12,7 @@
                             <small>Algorithm: </small>
                         </div>
 
-                        <algorithms :chooseAlgorithm="setAlgorithm" />
+                        <algorithms :chooseAlgorithm="setAlgorithm" :value="form.algorithm"/>
 
                         <div class="col-md-6">
                             <h4>Hash generator</h4>
@@ -117,13 +117,14 @@ export default {
                 this.form.hash = response.data.result
             })
         },
-        clearForm(event) {
+        clearForm() {
             this.form.algorithm = null;
             this.form.input = '';
             this.form.hash = '';
             this.form.salt = '';
         },
         setAlgorithm(algorithm) {
+            this.clearForm()
             this.form.algorithm = algorithm
         }
     }
