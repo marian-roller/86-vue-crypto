@@ -41,16 +41,7 @@
 
             
                 <div class="card-footer text-muted text-left">
-                    <div class="row">
-                        <div class="col-md-2 offset-md-2">
-                            <div 
-                            class="btn btn-secondary btn-sm"
-                            @click="mine"
-                            >
-                            Mine
-                            </div>
-                        </div>
-                    </div>
+                    <MineButton @click="mine" />
                 </div>
                 
             </div>
@@ -64,6 +55,7 @@ import DataField from '../fields/DataField.vue'
 import HashField from '../fields/HashField.vue'
 import NonceField from '../fields/NonceField.vue'
 import BlockIdField from '../fields/BlockIdField.vue'
+import MineButton from '../fields/MineButton.vue'
 
 export default {
     name: 'block',
@@ -71,7 +63,8 @@ export default {
         DataField,
         HashField,
         NonceField,
-        BlockIdField
+        BlockIdField,
+        MineButton
     },
     data(){
         return {
@@ -90,6 +83,7 @@ export default {
     },
     methods: {
         mine() {
+            console.log('mine')
             // axios to mine
             // populate nonce field, hash field
         },
