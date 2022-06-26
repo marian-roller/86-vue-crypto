@@ -27,7 +27,24 @@
 
                             <div class="dropdown-menu" aria-labelledby="blockchainDropdown">
                                 <router-link to="/block" class="dropdown-item">Block visualization</router-link>
+                                <router-link to="/block" class="dropdown-item">Blockchain visualization</router-link>
                             </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a id="encryptionDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Encryption
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="encryptionDropdown">
+                                <router-link to="/" class="dropdown-item">Encryption algorithms</router-link>
+                                <router-link to="/" class="dropdown-item">Encrypt file</router-link>
+                                <router-link to="/" class="dropdown-item">PGP vizualization</router-link><!-- generate pkpk by rsa algorithm -->
+                                <router-link to="/" class="dropdown-item">Steganography</router-link>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/" class="nav-link">Encrypted chat</router-link>
                         </li>
                     </ul>
 
