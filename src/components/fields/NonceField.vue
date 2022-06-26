@@ -1,23 +1,24 @@
 <template>
+                        
     <div class="row mt-3">
         <div class="col-md-2">
-            <div class="font-weight-bold">data:</div>
+            <div class="font-weight-bold">Nonce:</div>
         </div>
         <div class="col-md-10">
-            <textarea 
-            id="input"
+            <input 
+            id="nonce"
+            type="text"
             class="form-control" 
-            rows="6" 
             v-model="value"
-            ></textarea>
+            >
         </div>
     </div>
+
 </template>
 
 <script>
 export default {
-    name: 'datafield',
-
+    name: 'noncefield',
     props: ['modelValue'],
     emits: ['update:modelValue'],
     computed: {

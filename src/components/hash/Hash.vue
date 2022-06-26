@@ -26,9 +26,10 @@
 
                 <div class="card-body">
                     <DataField v-model="form.input" @keyup="sendToConvert" />
-                    <SaltField v-model="form.salt" @keyup="sendToConvert"/>
+                    <SaltField v-model="form.salt" @keyup="sendToConvert" />
                     <HashField :hashed="form.hash" />
                 </div>
+                
                 <div class="card-footer text-muted text-right">
                     <div class="row">
                         <div class="col-md-2 text-left">

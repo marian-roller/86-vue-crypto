@@ -34,8 +34,6 @@
 
                 <div class="card-body">
 
-
-
                     <div class="row">
                         <div class="col-md-2">
                             <div class="font-weight-bold">Block:</div>
@@ -56,50 +54,11 @@
                         </div>
                     </div>
 
-                    <div class="row mt-3">
-                        <div class="col-md-2">
-                            <div class="font-weight-bold">Nonce:</div>
-                        </div>
-                        <div class="col-md-10">
-                            <input 
-                            id="nonce"
-                            type="text"
-                            class="form-control" 
-                            v-model="form.nonce"
-                            @keyup="validateBlock"
-                            >
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-2">
-                            <div class="font-weight-bold">Data:</div>
-                        </div>
-                        <div class="col-md-10">
-                            <textarea 
-                            id="input"
-                            class="form-control" 
-                            rows="6" 
-                            v-model="form.input"
-                            @keyup="validateBlock"
-                            ></textarea>
-                        </div>
-                    </div>
-
-                    <div class="row mt-3">
-                        <div class="col-md-2">
-                            <div class="font-weight-bold">Hash:</div>
-                        </div>
-                        <div class="col-md-10">
-                            <input 
-                            id="hash"
-                            type="text"
-                            class="form-control" 
-                            readonly
-                            v-model="form.hash"
-                            >
-                        </div>
-                    </div>
+                    <NonceField v-model="form.nonce" @keyup="validateBlock"/>
+                    <DataField v-model="form.input" @keyup="sendToConvert" />
+                    <HashField :hashed="form.hash" />
                 </div>
+
                 <div class="card-footer text-muted text-left">
                     <div class="row">
                         <div class="col-md-2 offset-md-2">
@@ -112,6 +71,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
         </section>
     </div>
@@ -119,8 +79,17 @@
 
 <script>
 import axios from 'axios'
+import DataField from '../fields/DataField.vue'
+import HashField from '../fields/HashField.vue'
+import NonceField from '../fields/NonceField.vue'
+
 export default {
     name: 'block',
+    components: {
+        DataField,
+        HashField,
+        NonceField,
+    },
     data(){
         return {
             form: {
