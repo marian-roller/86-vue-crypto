@@ -33,32 +33,13 @@
                 </div>
 
                 <div class="card-body">
-
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="font-weight-bold">Block:</div>
-                        </div>
-                        <div class="col-md-10">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">#</div>
-                                </div>
-                                <input 
-                                type="text" 
-                                class="form-control" 
-                                id="block"
-                                v-model="form.blockId"
-                                @keyup="validateBlock"
-                                >
-                            </div>
-                        </div>
-                    </div>
-
+                    <BlockIdField v-model="form.blockId" @keyup="validateBlock"/>
                     <NonceField v-model="form.nonce" @keyup="validateBlock"/>
                     <DataField v-model="form.input" @keyup="sendToConvert" />
                     <HashField :hashed="form.hash" />
                 </div>
 
+            
                 <div class="card-footer text-muted text-left">
                     <div class="row">
                         <div class="col-md-2 offset-md-2">
@@ -82,6 +63,7 @@ import axios from 'axios'
 import DataField from '../fields/DataField.vue'
 import HashField from '../fields/HashField.vue'
 import NonceField from '../fields/NonceField.vue'
+import BlockIdField from '../fields/BlockIdField.vue'
 
 export default {
     name: 'block',
@@ -89,6 +71,7 @@ export default {
         DataField,
         HashField,
         NonceField,
+        BlockIdField
     },
     data(){
         return {
