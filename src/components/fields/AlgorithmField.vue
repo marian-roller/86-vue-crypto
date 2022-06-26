@@ -4,7 +4,7 @@
         <select 
         id="algorithm" 
         class="form-control form-control-sm" 
-        @change="onChange"
+        v-model="value"
         >
             <option :value="null" disabled selected>Choose...</option>
             <option v-for="item in this.algorithms" :value="item">{{item}}</option>
@@ -16,14 +16,22 @@
 <script>
 import axios from 'axios'
 export default {
-    name: 'algorithms',
-    props: {
-        chooseAlgorithm: Function,
+    name: 'algorithmfield',
+    props: ['modelValue'],
+    emits: ['update:modelValue'],
+    computed: {
+        value: {
+            get() {
+                return this.modelValue
+            },
+            set(value) {
+                this.$emit('update:modelValue', value)
+            }
+        }
     },
     data() {
         return {
             algorithms: null,
-            algorithm: ''
         }
     },
     mounted() {
@@ -31,12 +39,6 @@ export default {
             .then((response) => {
                 this.algorithms = response.data.result
             })
-    },
-    methods: {
-        onChange(event) {
-            this.algorithm = event.target.value;
-            this.chooseAlgorithm(this.algorithm)
-        },
     }
 }
 </script>

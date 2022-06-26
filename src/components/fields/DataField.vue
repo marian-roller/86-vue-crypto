@@ -1,22 +1,23 @@
 <template>
-    <div class="row mt-3">
+    <div class="row">
         <div class="col-md-2">
-            <div class="font-weight-bold">salt:</div>
+            <div class="font-weight-bold">data:</div>
         </div>
         <div class="col-md-10">
-            <input 
-            id="salt"
-            type="text"
+            <textarea 
+            id="input"
             class="form-control" 
+            rows="6" 
             v-model="value"
-            >
+            ></textarea>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'saltfield',    
+    name: 'datafield',
+
     props: ['modelValue'],
     emits: ['update:modelValue'],
     computed: {

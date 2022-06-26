@@ -3,7 +3,6 @@
         <section class="mt-4">
             <div class="card">
 
-
                 <div class="card-header text-center">
 
                     <div class="row">
@@ -12,7 +11,7 @@
                             <small>Algorithm: </small>
                         </div>
 
-                        <algorithms :chooseAlgorithm="setAlgorithm"/>
+                        <AlgorithmField v-model="form.algorithm" @change="clearFields" />
 
                         <div class="col-md-6">
                             <h4>Hash generator</h4>
@@ -26,37 +25,8 @@
                 </div>
 
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="font-weight-bold">data:</div>
-                        </div>
-                        <div class="col-md-10">
-                            <textarea 
-                            id="input"
-                            class="form-control" 
-                            rows="6" 
-                            v-model="form.input"
-                            @keyup="sendToConvert"
-                            ></textarea>
-                        </div>
-                    </div>
-
-                    <!-- <div class="row mt-3">
-                        <div class="col-md-2">
-                            <div class="font-weight-bold">salt:</div>
-                        </div>
-                        <div class="col-md-10">
-                            <input 
-                            id="salt"
-                            type="text"
-                            class="form-control" 
-                            v-model="form.salt"
-                            @keyup="sendToConvert"
-                            >
-                        </div>
-                    </div> -->
-
-                    <SaltField :convertSalt="setSalt" />
+                    <DataField v-model="form.input" @keyup="sendToConvert" />
+                    <SaltField v-model="form.salt" @keyup="sendToConvert"/>
                     <HashField :hashed="form.hash" />
                 </div>
                 <div class="card-footer text-muted text-right">
@@ -77,16 +47,18 @@
 
 <script>
 import axios from 'axios'
-import algorithms from './Algorithms.vue'
+import AlgorithmField from '../fields/AlgorithmField.vue'
 import HashField from '../fields/HashField.vue'
 import SaltField from '../fields/SaltField.vue'
+import DataField from '../fields/DataField.vue'
 
 export default {
     name: 'hash',
     components: {
-    algorithms,
+    AlgorithmField,
     HashField,
     SaltField,
+    DataField
 },
     data() {
         return {
@@ -100,7 +72,6 @@ export default {
     },
     methods: {
         sendToConvert() {
-            console.log(this.form)
             axios.post('hash/convert', 
             {
                 algorithm: this.form.algorithm,
@@ -113,17 +84,12 @@ export default {
         },
         clearForm() {
             this.form.algorithm = null;
+            this.clearFields()
+        },
+        clearFields() {
             this.form.input = '';
             this.form.hash = '';
             this.form.salt = '';
-        },
-        setAlgorithm(algorithm) {
-            this.clearForm()
-            this.form.algorithm = algorithm
-        },
-        setSalt(salt) {
-            this.form.salt = salt
-            this.sendToConvert()
         }
     }
 }
