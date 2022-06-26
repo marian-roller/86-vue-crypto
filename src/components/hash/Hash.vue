@@ -41,7 +41,7 @@
                         </div>
                     </div>
 
-                    <div class="row mt-3">
+                    <!-- <div class="row mt-3">
                         <div class="col-md-2">
                             <div class="font-weight-bold">salt:</div>
                         </div>
@@ -54,8 +54,9 @@
                             @keyup="sendToConvert"
                             >
                         </div>
-                    </div>
+                    </div> -->
 
+                    <SaltField :convertSalt="setSalt" />
                     <HashField :hashed="form.hash" />
                 </div>
                 <div class="card-footer text-muted text-right">
@@ -78,12 +79,14 @@
 import axios from 'axios'
 import algorithms from './Algorithms.vue'
 import HashField from '../fields/HashField.vue'
+import SaltField from '../fields/SaltField.vue'
 
 export default {
     name: 'hash',
     components: {
     algorithms,
-    HashField
+    HashField,
+    SaltField,
 },
     data() {
         return {
@@ -97,6 +100,7 @@ export default {
     },
     methods: {
         sendToConvert() {
+            console.log(this.form)
             axios.post('hash/convert', 
             {
                 algorithm: this.form.algorithm,
@@ -116,6 +120,10 @@ export default {
         setAlgorithm(algorithm) {
             this.clearForm()
             this.form.algorithm = algorithm
+        },
+        setSalt(salt) {
+            this.form.salt = salt
+            this.sendToConvert()
         }
     }
 }
