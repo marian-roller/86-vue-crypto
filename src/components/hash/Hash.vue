@@ -56,20 +56,9 @@
                         </div>
                     </div>
 
-                    <div class="row mt-3">
-                        <div class="col-md-2">
-                            <div class="font-weight-bold">hash:</div>
-                        </div>
-                        <div class="col-md-10">
-                            <input 
-                            id="hash"
-                            type="text"
-                            class="form-control" 
-                            readonly
-                            v-model="form.hash"
-                            >
-                        </div>
-                    </div>
+                    <HashField :hashed="form.hash" />
+
+
                 </div>
                 <div class="card-footer text-muted text-right">
                     <div class="row">
@@ -90,11 +79,14 @@
 <script>
 import axios from 'axios'
 import algorithms from './Algorithms.vue'
+import HashField from '../fields/HashField.vue'
+
 export default {
     name: 'hash',
     components: {
-        algorithms
-    },
+    algorithms,
+    HashField
+},
     data() {
         return {
             form: {

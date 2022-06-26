@@ -38,11 +38,8 @@
 
                             <div class="dropdown-menu" aria-labelledby="encryptionDropdown">
                                 <router-link to="/" class="dropdown-item">Encryption algorithms</router-link>
-                                <router-link to="/" class="dropdown-item">Encrypting files</router-link>
-                                <router-link to="/" class="dropdown-item">PGP vizualization</router-link>
-                                generate pkpk by rsa algorithm
-
-
+                                <router-link to="/" class="dropdown-item">Encrypt file</router-link>
+                                <router-link to="/" class="dropdown-item">PGP vizualization</router-link><!-- generate pkpk by rsa algorithm -->
                                 <router-link to="/" class="dropdown-item">Steganography</router-link>
                             </div>
                         </li>
