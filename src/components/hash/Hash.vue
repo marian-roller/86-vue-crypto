@@ -12,7 +12,7 @@
                             <small>Algorithm: </small>
                         </div>
 
-                        <algorithms :chooseAlgorithm="setAlgorithm" :value="form.algorithm"/>
+                        <algorithms :chooseAlgorithm="setAlgorithm"/>
 
                         <div class="col-md-6">
                             <h4>Hash generator</h4>
@@ -57,8 +57,6 @@
                     </div>
 
                     <HashField :hashed="form.hash" />
-
-
                 </div>
                 <div class="card-footer text-muted text-right">
                     <div class="row">
