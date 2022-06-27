@@ -32,10 +32,14 @@
                     </div>
                 </div>
 
-                <div class="card-body">
-                    <BlockIdField v-model="form.blockId" @keyup="validateBlock"/>
-                    <NonceField v-model="form.nonce" @keyup="validateBlock"/>
+                <div class="card-body" :class="{ 
+                    'bg-success': this.form.validateSuccess,
+                    'bg-error': !this.form.validateSuccess
+                    }">
+                    <BlockIdField v-model="form.blockId" @keyup="sendToConvert"/>
+                    <NonceField v-model="form.nonce" @keyup="sendToConvert"/>
                     <DataField v-model="form.input" @keyup="sendToConvert" />
+                    <HashStartField v-model="form.hashStart" @keyup="sendToConvert"/>
                     <HashField :hashed="form.hash" />
                 </div>
 
@@ -53,6 +57,7 @@
 import axios from 'axios'
 import DataField from '../fields/DataField.vue'
 import HashField from '../fields/HashField.vue'
+import HashStartField from '../fields/HashStartField.vue'
 import NonceField from '../fields/NonceField.vue'
 import BlockIdField from '../fields/BlockIdField.vue'
 import MineButton from '../fields/MineButton.vue'
@@ -62,6 +67,7 @@ export default {
     components: {
         DataField,
         HashField,
+        HashStartField,
         NonceField,
         BlockIdField,
         MineButton
@@ -73,19 +79,21 @@ export default {
                 blockId: null,
                 nonce: '',
                 input: '',
-                hash: ''
+                hash: '',
+                hashStart: '00',
+                validateSuccess: null
             }
         }
     },
     mounted() {
         this.form.blockId = '1'
-        this.form.nonce = '1'
-        // mine
+        this.form.nonce = '0'
+        // mine ?
     },
     methods: {
         mine() {
-            console.log('mine')
-
+            this.form.nonce = '0'
+            this.form.hashStart  = this.form.hashStart ? this.form.hashStart : '00'
             axios.post('block/mine', 
             {
                 algorithm: this.form.algorithm,
@@ -93,21 +101,26 @@ export default {
                 nonce: this.form.nonce,
                 data: this.form.input,
                 hash: this.form.hash,
+                hashStart: this.form.hashStart,
             })
             .then((response) => {
-                console.log(response.data)
                 this.form.nonce = response.data.result.nonce
                 this.form.hash = response.data.result.hash
+                this.validateBlock()
             })
         },
         clearForm() {
             this.form.input = '';
             this.form.nonce = '';
             this.form.hash = '';
+            this.form.hashStart = '';
         },
         validateBlock() {
-            // set background color
-            this.sendToConvert()
+            if (this.form.hash.startsWith(this.form.hashStart)) {
+                this.form.validateSuccess = true
+            } else {
+                this.form.validateSuccess = false
+            }
         },
         sendToConvert() {
             axios.post('hash/convert', 
@@ -117,6 +130,7 @@ export default {
             })
             .then((response) => {
                 this.form.hash = response.data.result
+                this.validateBlock()
             })
         }
     },
