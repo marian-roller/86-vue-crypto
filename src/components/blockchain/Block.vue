@@ -78,14 +78,27 @@ export default {
         }
     },
     mounted() {
-        // set block id
+        this.form.blockId = '1'
+        this.form.nonce = '1'
         // mine
     },
     methods: {
         mine() {
             console.log('mine')
-            // axios to mine
-            // populate nonce field, hash field
+
+            axios.post('block/mine', 
+            {
+                algorithm: this.form.algorithm,
+                blockId: this.form.blockId,
+                nonce: this.form.nonce,
+                data: this.form.input,
+                hash: this.form.hash,
+            })
+            .then((response) => {
+                console.log(response.data)
+                this.form.nonce = response.data.result.nonce
+                this.form.hash = response.data.result.hash
+            })
         },
         clearForm() {
             this.form.input = '';
