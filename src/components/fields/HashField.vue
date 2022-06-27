@@ -17,6 +17,7 @@
 
 <script>
 export default {
+    name: 'hashField',
     props: {
         hashed: String
     },
