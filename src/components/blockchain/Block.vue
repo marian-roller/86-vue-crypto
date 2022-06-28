@@ -13,7 +13,7 @@
                         </div>
 
                         <div class="col-md-2 text-left">
-                            <small>sha256</small>
+                            <small>{{ form.algorithm }}</small>
                         </div>
 
                         <div class="col-md-6">
@@ -33,8 +33,9 @@
                 </div>
 
                 <div class="card-body" :class="{ 
-                    'bg-success': this.form.validateSuccess,
-                    'bg-error': !this.form.validateSuccess
+                    'bg-success': form.validateSuccess,
+                    'bg-error': form.validateFail,
+                    '': form.validateEmpty
                     }">
                     <BlockIdField v-model="form.blockId" @keyup="sendToConvert"/>
                     <NonceField v-model="form.nonce" @keyup="sendToConvert"/>
@@ -81,14 +82,17 @@ export default {
                 input: '',
                 hash: '',
                 hashStart: '00',
-                validateSuccess: null
+                validateSuccess: false,
+                validateFail: false,
+                validateEmpty: false
             }
         }
     },
     mounted() {
         this.form.blockId = '1'
         this.form.nonce = '0'
-        // mine ?
+        this.sendToConvert()
+        this.validateBlock()
     },
     methods: {
         mine() {
@@ -114,12 +118,26 @@ export default {
             this.form.nonce = '';
             this.form.hash = '';
             this.form.hashStart = '';
+            this.validateBlock();
         },
         validateBlock() {
+            if (this.form.hashStart == '') {
+                this.form.validateSuccess = false
+                this.form.validateEmpty = true
+                this.form.validateFail = false
+                return
+            } 
             if (this.form.hash.startsWith(this.form.hashStart)) {
                 this.form.validateSuccess = true
-            } else {
+                this.form.validateEmpty = false
+                this.form.validateFail = false
+                return
+            } 
+            if (!this.form.hash.startsWith(this.form.hashStart)) {
                 this.form.validateSuccess = false
+                this.form.validateEmpty = false
+                this.form.validateFail = true
+                return
             }
         },
         sendToConvert() {
