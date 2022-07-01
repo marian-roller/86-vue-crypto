@@ -8,6 +8,8 @@
         >
             <option :value="null" disabled selected>Choose...</option>
             <option v-for="item in this.algorithms" :value="item">{{item}}</option>
+            <optgroup label="- - - - - - - - - - - -"></optgroup>
+            <option v-for="item in this.password_algorithms" :value="item">{{item}}</option>
         </select>
     </div>
 
@@ -32,9 +34,16 @@ export default {
     data() {
         return {
             algorithms: null,
+            password_algorithms: null
         }
     },
     mounted() {
+
+        axios.get('hash/password-algos')
+            .then((response) => {
+                this.password_algorithms = response.data.result
+            })
+
         axios.get('hash/algos')
             .then((response) => {
                 this.algorithms = response.data.result
