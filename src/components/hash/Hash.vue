@@ -37,6 +37,10 @@
                         </div>
                         <div class="col-md-10 text-left">
                             <small class="text-danger">{{ form.algorithm }}</small>
+                            <small class=""> length</small>
+                            <small class=""> strength</small>
+                            <small class=""> salt included in the hash</small>
+
                         </div>
                     </div>
                 </div>
