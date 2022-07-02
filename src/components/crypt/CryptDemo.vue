@@ -21,9 +21,13 @@
                                     Encryption
                                 </div>
                                 <div class="card-body">
-                                    <EncryptMessageField />
+                                    <EncryptMessageField v-model="encrypt.form.message"/>
                                     <EncryptModeField v-model="encrypt.form.mode"/>
                                     <EncryptKeySizeField v-model="encrypt.form.keysize"/>
+                                    <EncryptFormatField v-model="encrypt.form.format"/>
+                                    <EncryptKeyField v-model="encrypt.form.key"/>
+                                    <EncryptSubmitField @click="submit"/>
+                                    <EncryptOutputField v-model="encrypt.form.output"/>
                                 </div>
                             </div>
                         </div>
@@ -65,20 +69,32 @@
 import EncryptMessageField from '../fields/crypt/EncryptMessageField.vue'
 import EncryptModeField from '../fields/crypt/EncryptModeField.vue'
 import EncryptKeySizeField from '../fields/crypt/EncryptKeySizeField.vue'
+import EncryptFormatField from '../fields/crypt/EncryptFormatField.vue'
+import EncryptKeyField from '../fields/crypt/EncryptKeyField.vue'
+import EncryptOutputField from '../fields/crypt/EncryptOutputField.vue'
+import EncryptSubmitField from '../fields/crypt/EncryptSubmitField.vue'
 
 export default {
      name: 'CryptDemo',
      components: {
         EncryptMessageField,
         EncryptModeField,
-        EncryptKeySizeField
+        EncryptKeySizeField,
+        EncryptFormatField,
+        EncryptKeyField,
+        EncryptOutputField,
+        EncryptSubmitField
     },
     data() {
         return {
             encrypt: {
                 form: {
+                    message: null,
                     mode: null,
-                    keysize: null
+                    keysize: null,
+                    format: null,
+                    key: null,
+                    output: null
                 }
             },
             decrypt: {
@@ -87,6 +103,11 @@ export default {
                 }
             }
             
+        }
+    },
+    methods: {
+        submit() {
+            console.log(this.encrypt.form)
         }
     }
         
