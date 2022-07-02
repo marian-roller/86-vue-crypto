@@ -8,7 +8,7 @@
             id="encrypt-output"
             class="form-control" 
             rows="6" 
-            v-model="output"
+            v-model="value"
             ></textarea>
         </div>
     </div>
@@ -17,8 +17,17 @@
 <script>
 export default {
     name: 'EncryptOutputField',
-    props: {
-        output: String
+    props: ['modelValue'],
+    emits: ['update:modelValue'],
+    computed: {
+        value: {
+            get() {
+                return this.modelValue
+            },
+            set(value) {
+                this.$emit('update:modelValue', value)
+            }
+        }
     },
 }
 

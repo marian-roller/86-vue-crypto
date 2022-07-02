@@ -27,7 +27,7 @@
                                     <EncryptFormatField v-model="encrypt.form.format"/>
                                     <EncryptKeyField v-model="encrypt.form.key"/>
                                     <EncryptSubmitField @click="submit"/>
-                                    <EncryptOutputField v-model="encrypt.form.output"/>
+                                    <EncryptOutputField v-model="encrypt.output"/>
                                 </div>
                             </div>
                         </div>
@@ -66,6 +66,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import EncryptMessageField from '../fields/crypt/EncryptMessageField.vue'
 import EncryptModeField from '../fields/crypt/EncryptModeField.vue'
 import EncryptKeySizeField from '../fields/crypt/EncryptKeySizeField.vue'
@@ -94,12 +95,12 @@ export default {
                     keysize: null,
                     format: null,
                     key: null,
-                    output: null
-                }
+                },
+                output: null
             },
             decrypt: {
                 form: {
-                    output: null
+                    // output: null
                 }
             }
             
@@ -107,7 +108,14 @@ export default {
     },
     methods: {
         submit() {
-            console.log(this.encrypt.form)
+            axios.post('crypt/encrypt', 
+            {
+                form: this.encrypt.form
+            })
+            .then((response) => {
+                this.encrypt.output = response.data.result
+            })
+            
         }
     }
         
