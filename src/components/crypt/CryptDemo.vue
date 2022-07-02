@@ -18,15 +18,20 @@
                         <div class="col-md-6 pr-0">
                             <div class="card">
                                 <div class="card-header">
-                                    Encryption
+                                    <div class="row">
+                                        <div class="col-md-10 offset-md-2 font-weight-bold">Encryption</div>
+                                    </div>
                                 </div>
+                                
                                 <div class="card-body">
+                                    <!-- TODO FIX some labels -->
+
                                     <EncryptMessageField v-model="encrypt.form.message"/>
                                     <EncryptModeField v-model="encrypt.form.mode"/>
                                     <EncryptKeySizeField v-model="encrypt.form.keysize"/>
                                     <EncryptFormatField v-model="encrypt.form.format"/>
                                     <EncryptKeyField v-model="encrypt.form.key"/>
-                                    <EncryptSubmitField @click="submit"/>
+                                    <EncryptSubmitField @click="submit" :sumbitprefix="encrypt.button_text"/>
                                     <EncryptOutputField v-model="encrypt.output"/>
                                 </div>
                             </div>
@@ -35,10 +40,18 @@
                         <div class="col-md-6 pl-0">
                             <div class="card">
                                 <div class="card-header">
-                                    Decryption
+                                    <div class="row">
+                                        <div class="col-md-10 offset-md-2 font-weight-bold">Decryption</div>
+                                    </div>
                                 </div>
                                 <div class="card-body">
-                                    
+                                    <EncryptMessageField v-model="decrypt.form.message"/>
+                                    <EncryptModeField v-model="decrypt.form.mode"/>
+                                    <EncryptKeySizeField v-model="decrypt.form.keysize"/>
+                                    <EncryptFormatField v-model="decrypt.form.format"/>
+                                    <EncryptKeyField v-model="decrypt.form.key"/>
+                                    <EncryptSubmitField @click="submit" :sumbitprefix="decrypt.button_text"/>
+                                    <EncryptOutputField v-model="decrypt.output"/>
                                 </div>
                             </div>
                         </div>
@@ -96,15 +109,20 @@ export default {
                     format: null,
                     key: null,
                 },
-                output: null
+                output: null,
+                button_text: 'Encrypt'
             },
             decrypt: {
                 form: {
-                    
-                }
-                // output: null
+                    message: null,
+                    mode: null,
+                    keysize: null,
+                    format: null,
+                    key: null,
+                },
+                output: null,
+                button_text: 'Decrypt'
             }
-            
         }
     },
     methods: {
