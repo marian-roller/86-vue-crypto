@@ -34,8 +34,15 @@ export default {
     data() {
         return {
             modes: {
-                'ECB': 'ecb',
-                'CBC': 'cbc'
+                'CBC': 'cbc',
+                'CBC-HMAC-SHA1': 'cbc-hmac-sha1',
+                'CBC-HMAC-SHA25': 'cbc-hmac-sha256',
+                'CFB': 'cfb',
+                'CFB1': 'cfb1',
+                'CFB8': 'cfb8',
+                'CTR (recommended)': 'ctr',
+                'OCB': 'ocb',
+                'OFB': 'ofb',
             }
         }
     },

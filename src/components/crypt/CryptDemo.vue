@@ -100,8 +100,9 @@ export default {
             },
             decrypt: {
                 form: {
-                    // output: null
+                    
                 }
+                // output: null
             }
             
         }
@@ -110,12 +111,15 @@ export default {
         submit() {
             axios.post('crypt/encrypt', 
             {
-                form: this.encrypt.form
+                message: this.encrypt.form.message,
+                mode: this.encrypt.form.mode,
+                keysize: this.encrypt.form.keysize,
+                format: this.encrypt.form.format,
+                key: this.encrypt.form.key,
             })
             .then((response) => {
                 this.encrypt.output = response.data.result
-            })
-            
+            })  
         }
     }
         
