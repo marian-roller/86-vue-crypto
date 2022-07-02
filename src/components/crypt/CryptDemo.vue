@@ -21,7 +21,9 @@
                                     Encryption
                                 </div>
                                 <div class="card-body">
-                                   
+                                    <EncryptMessageField />
+                                    <EncryptModeField v-model="encrypt.form.mode"/>
+                                    <EncryptKeySizeField v-model="encrypt.form.keysize"/>
                                 </div>
                             </div>
                         </div>
@@ -58,3 +60,36 @@
         </section>
     </div>
 </template>
+
+<script>
+import EncryptMessageField from '../fields/crypt/EncryptMessageField.vue'
+import EncryptModeField from '../fields/crypt/EncryptModeField.vue'
+import EncryptKeySizeField from '../fields/crypt/EncryptKeySizeField.vue'
+
+export default {
+     name: 'CryptDemo',
+     components: {
+        EncryptMessageField,
+        EncryptModeField,
+        EncryptKeySizeField
+    },
+    data() {
+        return {
+            encrypt: {
+                form: {
+                    mode: null,
+                    keysize: null
+                }
+            },
+            decrypt: {
+                form: {
+                    output: null
+                }
+            }
+            
+        }
+    }
+        
+}
+
+</script>
