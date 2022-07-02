@@ -37,7 +37,7 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="encryptionDropdown">
-                                <router-link to="/" class="dropdown-item">Encryption algorithms</router-link>
+                                <router-link to="/crypt-demo" class="dropdown-item">Encryption demo</router-link>
                                 <router-link to="/" class="dropdown-item">Encrypt file</router-link>
                                 <router-link to="/" class="dropdown-item">PGP vizualization</router-link><!-- generate pkpk by rsa algorithm -->
                                 <router-link to="/" class="dropdown-item">Steganography</router-link>
@@ -49,6 +49,7 @@
                     </ul>
 
                     <ul class="navbar-nav ml-auto">
+
                          <template v-if="authenticated">
                             <li class="nav-item dropdown">
                                 <a id="userDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -73,6 +74,17 @@
                                 <router-link to="/register" class="nav-link">Register</router-link>
                             </li>
                         </template>
+
+                        <li class="nav-item dropdown">
+                            <a id="apiDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                API
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="apiDropdown">
+                                <router-link to="/" class="dropdown-item">Laravel</router-link>
+                                <router-link to="/" class="dropdown-item">Ruby on Rails</router-link>
+                            </div>
+                        </li>
 
                     </ul>
                 </div>

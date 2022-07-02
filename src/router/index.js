@@ -5,6 +5,7 @@ import Block from "@/components/blockchain/Block.vue";
 import Dashboard from "../views/Dashboard.vue";
 import SignIn from "../views/SignIn.vue";
 import Register from "../views/Register.vue";
+import CryptDemo from "../components/crypt/CryptDemo.vue";
 import { store } from "@/store"
 
 const routes = [
@@ -45,6 +46,11 @@ const routes = [
         path: "/block",
         name: "block",
         component: Block,
+    },
+    {
+        path: "/crypt-demo",
+        name: "crypt-demo",
+        component: CryptDemo,
     },
 ];
 
