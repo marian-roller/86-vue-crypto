@@ -31,7 +31,7 @@
                                     <EncryptKeySizeField v-model="encrypt.form.keysize"/>
                                     <EncryptFormatField v-model="encrypt.form.format"/>
                                     <EncryptKeyField v-model="encrypt.form.key"/>
-                                    <EncryptSubmitField @click="submit" :sumbitprefix="encrypt.button_text"/>
+                                    <EncryptSubmitField @click="sendToEncrypt" :sumbitprefix="encrypt.button_text"/>
                                     <EncryptOutputField v-model="encrypt.output"/>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                                     <EncryptKeySizeField v-model="decrypt.form.keysize"/>
                                     <EncryptFormatField v-model="decrypt.form.format"/>
                                     <EncryptKeyField v-model="decrypt.form.key"/>
-                                    <EncryptSubmitField @click="submit" :sumbitprefix="decrypt.button_text"/>
+                                    <EncryptSubmitField @click="sendToDecrypt" :sumbitprefix="decrypt.button_text"/>
                                     <EncryptOutputField v-model="decrypt.output"/>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@ export default {
         }
     },
     methods: {
-        submit() {
+        sendToEncrypt() {
             axios.post('crypt/encrypt', 
             {
                 message: this.encrypt.form.message,
@@ -137,6 +137,19 @@ export default {
             })
             .then((response) => {
                 this.encrypt.output = response.data.result
+            })  
+        },
+        sendToDecrypt() {
+            axios.post('crypt/decrypt', 
+            {
+                message: this.decrypt.form.message,
+                mode: this.decrypt.form.mode,
+                keysize: this.decrypt.form.keysize,
+                format: this.decrypt.form.format,
+                key: this.decrypt.form.key,
+            })
+            .then((response) => {
+                this.decrypt.output = response.data.result
             })  
         }
     }
