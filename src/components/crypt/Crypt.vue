@@ -89,7 +89,7 @@ import EncryptOutputField from '../fields/crypt/EncryptOutputField.vue'
 import EncryptSubmitField from '../fields/crypt/EncryptSubmitField.vue'
 
 export default {
-     name: 'CryptDemo',
+     name: 'Crypt',
      components: {
         EncryptMessageField,
         EncryptModeField,
