@@ -18,15 +18,20 @@
                         <div class="col-md-6 pr-0">
                             <div class="card">
                                 <div class="card-header">
-                                    Encryption
+                                    <div class="row">
+                                        <div class="col-md-10 offset-md-2 font-weight-bold">Encryption</div>
+                                    </div>
                                 </div>
+                                
                                 <div class="card-body">
+                                    <!-- TODO FIX some labels -->
+
                                     <EncryptMessageField v-model="encrypt.form.message"/>
                                     <EncryptModeField v-model="encrypt.form.mode"/>
                                     <EncryptKeySizeField v-model="encrypt.form.keysize"/>
                                     <EncryptFormatField v-model="encrypt.form.format"/>
                                     <EncryptKeyField v-model="encrypt.form.key"/>
-                                    <EncryptSubmitField @click="submit"/>
+                                    <EncryptSubmitField @click="sendToEncrypt" :sumbitprefix="encrypt.button_text"/>
                                     <EncryptOutputField v-model="encrypt.output"/>
                                 </div>
                             </div>
@@ -35,10 +40,18 @@
                         <div class="col-md-6 pl-0">
                             <div class="card">
                                 <div class="card-header">
-                                    Decryption
+                                    <div class="row">
+                                        <div class="col-md-10 offset-md-2 font-weight-bold">Decryption</div>
+                                    </div>
                                 </div>
                                 <div class="card-body">
-                                    
+                                    <EncryptMessageField v-model="decrypt.form.message"/>
+                                    <EncryptModeField v-model="decrypt.form.mode"/>
+                                    <EncryptKeySizeField v-model="decrypt.form.keysize"/>
+                                    <EncryptFormatField v-model="decrypt.form.format"/>
+                                    <EncryptKeyField v-model="decrypt.form.key"/>
+                                    <EncryptSubmitField @click="sendToDecrypt" :sumbitprefix="decrypt.button_text"/>
+                                    <EncryptOutputField v-model="decrypt.output"/>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +89,7 @@ import EncryptOutputField from '../fields/crypt/EncryptOutputField.vue'
 import EncryptSubmitField from '../fields/crypt/EncryptSubmitField.vue'
 
 export default {
-     name: 'CryptDemo',
+     name: 'Crypt',
      components: {
         EncryptMessageField,
         EncryptModeField,
@@ -96,19 +109,24 @@ export default {
                     format: null,
                     key: null,
                 },
-                output: null
+                output: null,
+                button_text: 'Encrypt'
             },
             decrypt: {
                 form: {
-                    
-                }
-                // output: null
+                    message: null,
+                    mode: null,
+                    keysize: null,
+                    format: null,
+                    key: null,
+                },
+                output: null,
+                button_text: 'Decrypt'
             }
-            
         }
     },
     methods: {
-        submit() {
+        sendToEncrypt() {
             axios.post('crypt/encrypt', 
             {
                 message: this.encrypt.form.message,
@@ -119,6 +137,19 @@ export default {
             })
             .then((response) => {
                 this.encrypt.output = response.data.result
+            })  
+        },
+        sendToDecrypt() {
+            axios.post('crypt/decrypt', 
+            {
+                message: this.decrypt.form.message,
+                mode: this.decrypt.form.mode,
+                keysize: this.decrypt.form.keysize,
+                format: this.decrypt.form.format,
+                key: this.decrypt.form.key,
+            })
+            .then((response) => {
+                this.decrypt.output = response.data.result
             })  
         }
     }
