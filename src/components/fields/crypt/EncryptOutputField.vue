@@ -1,7 +1,7 @@
 <template>
     <div class="row mt-3">
-        <div class="col-md-2">
-            <div class="font-weight-bold small">Output:</div>
+        <div class="col-md-2 pr-0">
+            <div class="font-weight-bold small">{{ this.label }}</div>
         </div>
         <div class="col-md-10">
             <textarea 
@@ -17,7 +17,7 @@
 <script>
 export default {
     name: 'EncryptOutputField',
-    props: ['modelValue'],
+    props: ['modelValue', 'label'],
     emits: ['update:modelValue'],
     computed: {
         value: {

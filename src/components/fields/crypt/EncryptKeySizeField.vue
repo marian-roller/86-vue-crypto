@@ -9,7 +9,7 @@
             class="form-control form-control-sm" 
             v-model="value"
             >
-                <option :value="null" disabled selected>Choose...</option>
+                <option :value="null" disabled selected>Choose key size in bytes...</option>
                 <option v-for="(value, key) in this.keysize" :value="value">{{key}}</option>
             </select>
         </div>

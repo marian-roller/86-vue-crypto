@@ -9,7 +9,7 @@
             class="form-control form-control-sm" 
             v-model="value"
             >
-                <option :value="null" disabled selected>Choose...</option>
+                <option :value="null" disabled selected>Choose the mode...</option>
                 <option v-for="(value, key) in this.modes" :value="value">{{key}}</option>
         </select>
         </div>
@@ -35,14 +35,16 @@ export default {
         return {
             modes: {
                 'CBC': 'cbc',
-                'CBC-HMAC-SHA1': 'cbc-hmac-sha1',
-                'CBC-HMAC-SHA25': 'cbc-hmac-sha256',
-                'CFB': 'cfb',
+                // check proper flow for commented modes
+                // 'CBC-HMAC-SHA1': 'cbc-hmac-sha1',
+                // 'CBC-HMAC-SHA25': 'cbc-hmac-sha256',
                 'CFB1': 'cfb1',
                 'CFB8': 'cfb8',
                 'CTR (recommended)': 'ctr',
-                'OCB': 'ocb',
+                // 'OCB': 'ocb',
+                // ctr and ofb and cfb - compatible
                 'OFB': 'ofb',
+                'CFB': 'cfb',
             }
         }
     },
