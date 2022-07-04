@@ -9,7 +9,7 @@
             class="form-control form-control-sm" 
             v-model="value"
             >
-                <option :value="null" disabled selected>Choose...</option>
+                <option :value="null" disabled selected>Choose encoding format...</option>
                 <option v-for="(value, key) in this.format" :value="value">{{key}}</option>
             </select>
         </div>

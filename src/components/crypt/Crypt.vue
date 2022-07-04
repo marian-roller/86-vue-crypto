@@ -26,13 +26,14 @@
                                 <div class="card-body">
                                     <!-- TODO FIX some labels -->
 
-                                    <EncryptMessageField v-model="encrypt.form.message"/>
+                                    <EncryptMessageField v-model="encrypt.form.message" :label="encrypt.message_label"/>
                                     <EncryptModeField v-model="encrypt.form.mode"/>
                                     <EncryptKeySizeField v-model="encrypt.form.keysize"/>
                                     <EncryptFormatField v-model="encrypt.form.format"/>
                                     <EncryptKeyField v-model="encrypt.form.key"/>
                                     <EncryptSubmitField @click="sendToEncrypt" :sumbitprefix="encrypt.button_text"/>
-                                    <EncryptOutputField v-model="encrypt.output"/>
+                                    <EncryptOutputField v-model="encrypt.output" :label="encrypt.output_label"/>
+                                    <EncryptPasteButton @click="pasteOutputToDecrypt" />
                                 </div>
                             </div>
                         </div>
@@ -45,13 +46,13 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <EncryptMessageField v-model="decrypt.form.message"/>
+                                    <EncryptMessageField v-model="decrypt.form.message" :label="decrypt.message_label" />
                                     <EncryptModeField v-model="decrypt.form.mode"/>
                                     <EncryptKeySizeField v-model="decrypt.form.keysize"/>
                                     <EncryptFormatField v-model="decrypt.form.format"/>
                                     <EncryptKeyField v-model="decrypt.form.key"/>
                                     <EncryptSubmitField @click="sendToDecrypt" :sumbitprefix="decrypt.button_text"/>
-                                    <EncryptOutputField v-model="decrypt.output"/>
+                                    <EncryptOutputField v-model="decrypt.output" :label="decrypt.output_label" />
                                 </div>
                             </div>
                         </div>
@@ -87,6 +88,7 @@ import EncryptFormatField from '../fields/crypt/EncryptFormatField.vue'
 import EncryptKeyField from '../fields/crypt/EncryptKeyField.vue'
 import EncryptOutputField from '../fields/crypt/EncryptOutputField.vue'
 import EncryptSubmitField from '../fields/crypt/EncryptSubmitField.vue'
+import EncryptPasteButton from '../fields/crypt/EncryptPasteButton.vue'
 
 export default {
      name: 'Crypt',
@@ -97,7 +99,8 @@ export default {
         EncryptFormatField,
         EncryptKeyField,
         EncryptOutputField,
-        EncryptSubmitField
+        EncryptSubmitField,
+        EncryptPasteButton
     },
     data() {
         return {
@@ -110,7 +113,9 @@ export default {
                     key: null,
                 },
                 output: null,
-                button_text: 'Encrypt'
+                button_text: 'Encrypt',
+                message_label: 'Message to encrypt:',
+                output_label: 'Encrytped message:'
             },
             decrypt: {
                 form: {
@@ -121,7 +126,9 @@ export default {
                     key: null,
                 },
                 output: null,
-                button_text: 'Decrypt'
+                button_text: 'Decrypt',
+                message_label: 'Message to decrypt:',
+                output_label: 'Decrytped message:'
             }
         }
     },
@@ -151,6 +158,9 @@ export default {
             .then((response) => {
                 this.decrypt.output = response.data.result
             })  
+        },
+        pasteOutputToDecrypt() {
+            this.decrypt.form.message = this.encrypt.output
         }
     }
         
