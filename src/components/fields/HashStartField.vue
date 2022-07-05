@@ -1,7 +1,7 @@
 <template>
     <div class="row mt-3">
         <div class="col-md-2">
-            <div class="font-weight-bold">hash start:</div>
+            <div class="font-weight-bold small">Hash start:</div>
         </div>
         <div class="col-md-2">
             <input 
