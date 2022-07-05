@@ -2,7 +2,7 @@
                         
     <div class="row mt-3">
         <div class="col-md-2">
-            <div class="font-weight-bold">Nonce:</div>
+            <div class="font-weight-bold small">Nonce:</div>
         </div>
         <div class="col-md-10">
             <input 

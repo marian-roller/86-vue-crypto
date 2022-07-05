@@ -71,7 +71,18 @@ export default {
                 algorithm: null,
                 input: '',
                 salt: '',
-                hash: ''
+                hash: '',
+                options: {
+                    bcrypt: {
+                        salt: '',
+                        cost: ''
+                    },
+                    argon: {
+                        memory_cost: '',
+                        time_cost: '',
+                        threads: ''
+                    }
+                }
             }
         }
     },
@@ -81,7 +92,8 @@ export default {
             {
                 algorithm: this.form.algorithm,
                 input: this.form.input,
-                salt: this.form.salt
+                salt: this.form.salt,
+                options: this.form.options
             })
             .then((response) => {
                 this.form.hash = response.data.result

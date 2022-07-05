@@ -1,7 +1,7 @@
 <template>
     <div class="row mt-3">
         <div class="col-md-2">
-            <div class="font-weight-bold">data:</div>
+            <div class="font-weight-bold small">Data:</div>
         </div>
         <div class="col-md-10">
             <textarea 
