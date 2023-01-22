@@ -21,6 +21,11 @@
                             <div class="btn btn-secondary btn-sm d-block" @click="clearForm">Reset</div>
                         </div>
                     
+                        
+                    </div>
+
+                    <div class="row border-top border-bottom">
+                        <InstructionBlock />
                     </div>
                 </div>
 
@@ -36,7 +41,7 @@
                             <small>Present algorithm:</small>
                         </div>
                         <div class="col-md-10 text-left">
-                            <small class="text-danger">{{ form.algorithm }}</small>
+                            <small class="text-info font-weight-bold">{{ form.algorithm }}</small>
                             <small class=""> length</small>
                             <small class=""> strength</small>
                             <small class=""> salt included in the hash</small>
@@ -56,6 +61,8 @@ import AlgorithmField from '../fields/AlgorithmField.vue'
 import HashField from '../fields/HashField.vue'
 import SaltField from '../fields/SaltField.vue'
 import DataField from '../fields/DataField.vue'
+import instructionBlock from '../fields/InstructionBlock.vue'
+import InstructionBlock from '../fields/InstructionBlock.vue'
 
 export default {
     name: 'hash',
@@ -63,7 +70,8 @@ export default {
     AlgorithmField,
     HashField,
     SaltField,
-    DataField
+    DataField,
+    InstructionBlock
 },
     data() {
         return {
