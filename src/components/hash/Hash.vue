@@ -24,7 +24,7 @@
                         
                     </div>
 
-                    <div class="row border-top border-bottom">
+                    <div class="row">
                         <InstructionBlock />
                     </div>
                 </div>
@@ -42,10 +42,10 @@
                         </div>
                         <div class="col-md-10 text-left">
                             <small class="text-info font-weight-bold">{{ form.algorithm }}</small>
-                            <small class=""> length</small>
+                            <small> :: </small>
+                            <small class=""> length: <b>{{ calculateHashLength() }}</b> characters</small>
                             <small class=""> strength</small>
-                            <small class=""> salt included in the hash</small>
-
+                            <small class=""> salt aready included in the hash</small>
                         </div>
                     </div>
                 </div>
@@ -61,18 +61,17 @@ import AlgorithmField from '../fields/AlgorithmField.vue'
 import HashField from '../fields/HashField.vue'
 import SaltField from '../fields/SaltField.vue'
 import DataField from '../fields/DataField.vue'
-import instructionBlock from '../fields/InstructionBlock.vue'
 import InstructionBlock from '../fields/InstructionBlock.vue'
 
 export default {
     name: 'hash',
     components: {
-    AlgorithmField,
-    HashField,
-    SaltField,
-    DataField,
-    InstructionBlock
-},
+        AlgorithmField,
+        HashField,
+        SaltField,
+        DataField,
+        InstructionBlock
+    },
     data() {
         return {
             form: {
@@ -82,7 +81,6 @@ export default {
                 hash: '',
                 options: {
                     bcrypt: {
-                        salt: '',
                         cost: ''
                     },
                     argon: {
@@ -115,6 +113,11 @@ export default {
             this.form.input = '';
             this.form.hash = '';
             this.form.salt = '';
+        },
+        calculateHashLength() {
+            if (this.form.hash.length > 0) {
+                return this.form.hash.length
+            }
         }
     }
 }
