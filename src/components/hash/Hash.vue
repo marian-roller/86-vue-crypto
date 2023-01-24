@@ -30,7 +30,7 @@
 
                 <div class="card-body">
                     <DataField v-model="form.input" @keyup="sendToConvert" />
-                    <SaltField v-model="form.salt" @keyup="sendToConvert" />
+                    <SaltField v-model="form.salt" @keyup="sendToConvert" :disableSalt="form.password_algorithm_flag"/>
                     <HashField :hashed="form.hash" />
                 </div>
                 
@@ -115,6 +115,7 @@ export default {
         },
         clearForm() {
             this.form.algorithm = null;
+            this.form.password_algorithm_flag = '';
             this.clearFields()
         },
         clearFields() {
