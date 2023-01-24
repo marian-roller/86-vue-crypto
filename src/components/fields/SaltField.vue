@@ -9,6 +9,7 @@
             type="text"
             class="form-control" 
             v-model="value"
+            :disabled="disableSalt == 1"
             >
         </div>
     </div>
@@ -17,7 +18,7 @@
 <script>
 export default {
     name: 'saltfield',    
-    props: ['modelValue'],
+    props: ['modelValue', 'disableSalt'],
     emits: ['update:modelValue'],
     computed: {
         value: {
