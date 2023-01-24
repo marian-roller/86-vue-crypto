@@ -11,7 +11,7 @@
                             <small>Algorithm: </small>
                         </div>
 
-                        <AlgorithmField v-model="form.algorithm" @change="clearFields" />
+                        <AlgorithmField v-model="form.algorithm" @change="clearFields" @flag="checkFlag" />
 
                         <div class="col-md-6">
                             <h4>Hash generator</h4>
@@ -21,7 +21,6 @@
                             <div class="btn btn-secondary btn-sm d-block" @click="clearForm">Reset</div>
                         </div>
                     
-                        
                     </div>
 
                     <div class="row">
@@ -41,11 +40,19 @@
                             <small>Present algorithm:</small>
                         </div>
                         <div class="col-md-10 text-left">
-                            <small class="text-info font-weight-bold">{{ form.algorithm }}</small>
-                            <small> :: </small>
-                            <small class=""> length: <b>{{ calculateHashLength() }}</b> characters</small>
-                            <small class=""> strength</small>
-                            <small class=""> salt aready included in the hash</small>
+                            <div v-if="form.algorithm">
+                                <small class="text-info font-weight-bold">
+                                    {{ form.algorithm }}
+                                </small>
+                                
+                                <small v-if="form.input"> 
+                                    [length: <b>{{ calculateHashLength() }}</b> characters]
+                                </small>
+
+                                <small v-if="form.password_algorithm_flag"> 
+                                    [salt is aready included in the hash]
+                                </small>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -79,6 +86,7 @@ export default {
                 input: '',
                 salt: '',
                 hash: '',
+                password_algorithm_flag: '',
                 options: {
                     bcrypt: {
                         cost: ''
@@ -118,6 +126,9 @@ export default {
             if (this.form.hash.length > 0) {
                 return this.form.hash.length
             }
+        },
+        checkFlag(e) {
+            this.form.password_algorithm_flag = e;
         }
     }
 }

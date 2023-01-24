@@ -20,22 +20,30 @@ import axios from 'axios'
 export default {
     name: 'algorithmfield',
     props: ['modelValue'],
-    emits: ['update:modelValue'],
+    emits: ['update:modelValue', 'flag'],
     computed: {
         value: {
             get() {
                 return this.modelValue
             },
             set(value) {
+                if (this.password_algorithms.includes(value)) {
+                    this.password_algorithms_flag = true
+                } else {
+                    this.password_algorithms_flag = false
+                }
                 this.$emit('update:modelValue', value)
+                this.$emit('flag', this.password_algorithms_flag)
             }
         }
     },
     data() {
         return {
             algorithms: null,
-            password_algorithms: null
+            password_algorithms: null,
+            password_algorithms_flag: null
         }
+
     },
     mounted() {
 
