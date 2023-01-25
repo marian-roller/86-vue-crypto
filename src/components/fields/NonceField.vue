@@ -10,6 +10,7 @@
             type="text"
             class="form-control" 
             v-model="value"
+            readonly
             >
         </div>
     </div>

@@ -13,6 +13,7 @@
                 class="form-control" 
                 id="blockId"
                 v-model="value"
+                readonly
                 >
             </div>
         </div>

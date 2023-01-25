@@ -28,7 +28,9 @@
                             Reset
                             </div>
                         </div>
-                    
+                    </div>
+                    <div class="row">
+                        <InstructionBlock type="block"/>
                     </div>
                 </div>
 
@@ -38,7 +40,7 @@
                     '': form.validateEmpty
                     }">
                     <BlockIdField v-model="form.blockId" @keyup="sendToConvert"/>
-                    <NonceField v-model="form.nonce" @keyup="sendToConvert"/>
+                    <NonceField v-model="form.nonce" />
                     <DataField v-model="form.input" @keyup="sendToConvert" />
                     <HashStartField v-model="form.hashStart" @keyup="sendToConvert"/>
                     <HashField :hashed="form.hash" />
@@ -62,6 +64,7 @@ import HashStartField from '../fields/HashStartField.vue'
 import NonceField from '../fields/NonceField.vue'
 import BlockIdField from '../fields/BlockIdField.vue'
 import MineButton from '../fields/MineButton.vue'
+import InstructionBlock from '../fields/InstructionBlock.vue'
 
 export default {
     name: 'block',
@@ -71,7 +74,8 @@ export default {
         HashStartField,
         NonceField,
         BlockIdField,
-        MineButton
+        MineButton,
+        InstructionBlock
     },
     data(){
         return {

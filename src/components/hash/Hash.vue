@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="row">
-                        <InstructionBlock />
+                        <InstructionBlock type="hash"/>
                     </div>
                 </div>
 
