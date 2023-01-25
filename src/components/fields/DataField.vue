@@ -17,7 +17,6 @@
 <script>
 export default {
     name: 'datafield',
-
     props: ['modelValue'],
     emits: ['update:modelValue'],
     computed: {
