@@ -3,6 +3,7 @@ import TheWelcome from "@/components/TheWelcome.vue";
 import Hash from "@/components/hash/Hash.vue";
 import Block from "@/components/blockchain/Block.vue";
 import Blockchain from "@/components/blockchain/Blockchain.vue";
+import PublicKey from "@/components/key/PublicKey.vue";
 import Dashboard from "../views/Dashboard.vue";
 import SignIn from "../views/SignIn.vue";
 import Register from "../views/Register.vue";
@@ -52,6 +53,11 @@ const routes = [
         path: "/blockchain",
         name: "blockchain",
         component: Blockchain,
+    },
+    {
+        path: "/public-key",
+        name: "PublicKey",
+        component: PublicKey,
     },
     {
         path: "/crypt",

@@ -17,7 +17,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <router-link to="/hash" class="nav-link">Hashing board</router-link>
+                            <router-link to="/hash" class="nav-link">Hashing</router-link>
+                        </li>
+
+                        <li class="nav-item">
+                            <router-link to="/public-key" class="nav-link">Public key</router-link>
                         </li>
 
                        <li class="nav-item dropdown">
