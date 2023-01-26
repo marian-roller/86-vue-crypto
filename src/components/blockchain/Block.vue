@@ -43,7 +43,7 @@
                     <NonceField v-model="form.nonce" />
                     <DataField v-model="form.input" @keyup="sendToConvert" />
                     <HashStartField v-model="form.hashStart" @keyup="sendToConvert"/>
-                    <HashField :hashed="form.hash" />
+                    <HashField :hashed="form.hash" type="block"/>
                 </div>
 
             

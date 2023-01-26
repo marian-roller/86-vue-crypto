@@ -17,7 +17,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <router-link to="/hash" class="nav-link">Hashing board</router-link>
+                            <router-link to="/hash" class="nav-link">Hashing</router-link>
+                        </li>
+
+                        <li class="nav-item">
+                            <router-link to="/public-key" class="nav-link">Public key</router-link>
                         </li>
 
                        <li class="nav-item dropdown">
@@ -26,8 +30,8 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="blockchainDropdown">
-                                <router-link to="/block" class="dropdown-item">Block visualization</router-link>
-                                <router-link to="/block" class="dropdown-item">Blockchain visualization</router-link>
+                                <router-link to="/block" class="dropdown-item">Block</router-link>
+                                <router-link to="/blockchain" class="dropdown-item">Blockchain</router-link>
                             </div>
                         </li>
 
