@@ -26,8 +26,8 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="blockchainDropdown">
-                                <router-link to="/block" class="dropdown-item">Block visualization</router-link>
-                                <router-link to="/block" class="dropdown-item">Blockchain visualization</router-link>
+                                <router-link to="/block" class="dropdown-item">Block</router-link>
+                                <router-link to="/blockchain" class="dropdown-item">Blockchain</router-link>
                             </div>
                         </li>
 
