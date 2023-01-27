@@ -1,5 +1,43 @@
 <template>
     <div>
+        <section class="mt-4">
+            <div class="card">
+
+                <div class="card-header text-center">
+
+                    <div class="row">
+                    
+                        <div class="col-md-2 text-left">
+                            <small>Algorithm: </small>
+                        </div>
+
+                        <div class="col-md-2 text-left">
+                            <small>{{ form.algorithm }}</small>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h4>Public / Private keys generator</h4>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="btn btn-secondary btn-sm d-block" @click="clearForm">Reset</div>
+                        </div>
+                    
+                    </div>
+
+                    <div class="row">
+                        <InstructionBlock type="public-key"/>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                <PrivateKeyButton />
+                <PrivateKeyField />
+                <PublicKeyButton />
+                <PublicKeyField />     
+                </div>
+            </div>
+        </section>
         <h1>Public Key</h1>
         <div>simple, verifying, signed transactions</div>
 
@@ -11,9 +49,25 @@
 </template>
 
 <script>
-
+import PrivateKeyField from '../fields/PrivateKeyField.vue'
+import PrivateKeyButton from '../fields/PrivateKeyButton.vue'
+import PublicKeyField from '../fields/PublicKeyField.vue'
+import PublicKeyButton from '../fields/PublicKeyButton.vue'
 export default {
     name: 'PublicKey',
+    components: {
+        PrivateKeyField,
+        PrivateKeyButton,
+        PublicKeyField,
+        PublicKeyButton
+    },
+    data() {
+        return {
+            form: {
+                algorithm: 'test'
+            }
+        }
     }
+}
 
 </script>
