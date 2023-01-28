@@ -31,10 +31,9 @@
                 </div>
 
                 <div class="card-body">
-                <PrivateKeyButton />
-                <PrivateKeyField />
-                <PublicKeyButton />
-                <PublicKeyField />     
+                    <PrivateKeyField :privateKey="form.privateKey"/>
+                    <PublicKeyButton />
+                    <PublicKeyField />     
                 </div>
             </div>
         </section>
@@ -50,16 +49,16 @@
 
 <script>
 import PrivateKeyField from '../fields/PrivateKeyField.vue'
-import PrivateKeyButton from '../fields/PrivateKeyButton.vue'
 import PublicKeyField from '../fields/PublicKeyField.vue'
 import PublicKeyButton from '../fields/PublicKeyButton.vue'
+import InstructionBlock from '../fields/InstructionBlock.vue'
 export default {
     name: 'PublicKey',
     components: {
         PrivateKeyField,
-        PrivateKeyButton,
         PublicKeyField,
-        PublicKeyButton
+        PublicKeyButton,
+        InstructionBlock
     },
     data() {
         return {
@@ -67,6 +66,9 @@ export default {
                 algorithm: 'test'
             }
         }
+    },
+    methods: {
+        
     }
 }
 

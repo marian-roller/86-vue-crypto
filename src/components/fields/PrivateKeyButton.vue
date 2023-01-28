@@ -1,6 +1,10 @@
 <template>
     <div>
-        PrivateKeyButton
+        <div 
+            class="btn btn-secondary btn-sm"
+            >
+            Generate Private Key
+            </div>
     </div>
 </template>
 
