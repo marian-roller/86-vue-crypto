@@ -1,17 +1,15 @@
 <template>
     <div>
-        PublicKeyButton
+        <div 
+            class="btn btn-secondary btn-sm"
+            >
+            Generate Public Key
+        </div>
     </div>
 </template>
 
 <script>
 export default {
     name: 'PublicKeyButton',
-    components: {
-    },
-    data(){
-        return {
-        }
-    },
 }
 </script>
