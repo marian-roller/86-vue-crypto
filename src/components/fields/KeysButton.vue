@@ -1,15 +1,15 @@
 <template>
     <div>
         <div 
-            class="btn btn-secondary btn-sm"
+            class="btn btn-secondary btn-sm w-100"
             >
-            Generate Private Key
+            Generate Keys
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'PrivateKeyButton',
+    name: 'KeysButton',
 }
 </script>
