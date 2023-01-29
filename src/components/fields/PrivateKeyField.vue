@@ -9,25 +9,26 @@
             <textarea 
             id="private-key"
             class="form-control" 
-            rows="6" 
+            rows="10" 
             :value="form.privateKey"
             ></textarea>
         </div>
         <div class="col-md-2">
-            <PrivateKeyButton @click="generatePrivateKey"/>
+            <KeysButton @click="generatePrivateKey"/>
         </div>
     </div>
 </template>
 
 <script>
-import PrivateKeyButton from './PrivateKeyButton.vue';
+import axios from 'axios'
+import KeysButton from './KeysButton.vue'
 export default {
     name: 'PrivateKeyField',
     props: {
         privateKey: String
     },
     components: {
-        PrivateKeyButton
+        KeysButton
     },
     data(){
         return {
@@ -38,7 +39,11 @@ export default {
     },
     methods: {
         generatePrivateKey() {
-            this.form.privateKey = 'wow, private key';
+            axios.post('key/get-keys', 
+            {})
+            .then((response) => {
+                this.form.privateKey = response.data.result.private_key
+            })
         }
     }
 }

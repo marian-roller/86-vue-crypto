@@ -9,22 +9,18 @@
             <textarea 
             id="public-key"
             class="form-control" 
-            rows="6" 
+            rows="10" 
             :value="form.publicKey"
             ></textarea>
-        </div>
-        <div class="col-md-2">
-            <PublicKeyButton @click="generatePublicKey"/>
         </div>
     </div>
 </template>
 
 <script>
-import PublicKeyButton from './PublicKeyButton.vue';
+
 export default {
     name: 'PublicKeyField',
     components: {
-        PublicKeyButton
     },
     data(){
         return {
@@ -34,9 +30,6 @@ export default {
         }
     },
     methods: {
-        generatePublicKey() {
-            this.form.publicKey = 'wow, public key'
-        }
     }
 }
 </script>
