@@ -21,6 +21,7 @@
 
 <script>
 import axios from 'axios'
+import { mapActions } from 'vuex'
 import KeysButton from './KeysButton.vue'
 export default {
     name: 'PrivateKeyField',
@@ -38,11 +39,15 @@ export default {
         }
     },
     methods: {
+        ...mapActions({
+                publicKey: 'keys/publicKey'
+            }),
         generatePrivateKey() {
             axios.post('key/get-keys', 
             {})
             .then((response) => {
                 this.form.privateKey = response.data.result.private_key
+                this.publicKey(response.data.result.public_key)
             })
         }
     }
