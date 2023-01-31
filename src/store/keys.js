@@ -8,5 +8,16 @@ export default {
           }
         
     },
+    getters: {
+
+    },
+    mutations: {
+
+    }, 
+    actions: {
+        async publicKey({dispatch}, pKey) {
+            console.log(pKey);
+        }
+    }
 
  }
