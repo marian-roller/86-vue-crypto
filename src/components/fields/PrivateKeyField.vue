@@ -10,7 +10,7 @@
             id="private-key"
             class="form-control" 
             :rows="this.form.rows" 
-            :value="form.privateKey"
+            :value="privateKeyGet()"
             ></textarea>
         </div>
         <div class="col-md-2">
@@ -21,39 +21,48 @@
 
 <script>
 import axios from 'axios'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import KeysButton from './KeysButton.vue'
 export default {
     name: 'PrivateKeyField',
-    props: {
-        privateKey: String
-    },
     components: {
         KeysButton
     },
     data(){
         return {
             form: {
-                privateKey: '',
                 rows: null
             }
         }
     },
     mounted() {
         this.form.rows = 2
+    }, 
+    updated() {
+        this.checkRows();
     },
     methods: {
+        ...mapGetters({
+            privateKeyGet: 'keys/privateKey',
+        }),
         ...mapActions({
-            publicKey: 'keys/publicKey'
+            publicKey: 'keys/publicKey',
+            privateKey: 'keys/privateKey',
         }),
         generatePrivateKey() {
             axios.post('key/get-keys', 
             {})
             .then((response) => {
-                this.form.privateKey = response.data.result.private_key
-                this.form.rows = 29
                 this.publicKey(response.data.result.public_key)
+                this.privateKey(response.data.result.private_key)
             })
+        },
+        checkRows() {
+            if (this.privateKeyGet()) {
+                this.form.rows = 29
+            } else {
+                this.form.rows = 2
+            }
         }
     }
 }

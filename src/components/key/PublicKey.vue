@@ -67,10 +67,12 @@ export default {
     },
     methods: {
         ...mapActions({
-            publicKey: 'keys/publicKey'
+            publicKey: 'keys/publicKey',
+            privateKey: 'keys/privateKey'
         }),
         clearForm() {
             this.publicKey(null)
+            this.privateKey(null)
         }
     }
 }
