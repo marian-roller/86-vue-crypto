@@ -4,6 +4,10 @@ import Hash from "@/components/hash/Hash.vue";
 import Block from "@/components/blockchain/Block.vue";
 import Blockchain from "@/components/blockchain/Blockchain.vue";
 import PublicKey from "@/components/key/PublicKey.vue";
+import EncryptedFile from "@/components/key/EncryptedFile.vue";
+import EncryptedMessage from "@/components/key/EncryptedMessage.vue";
+import SignedMessage from "@/components/key/SignedMessage.vue";
+import Steganography from "@/components/crypt/Steganography.vue";
 import Dashboard from "../views/Dashboard.vue";
 import SignIn from "../views/SignIn.vue";
 import Register from "../views/Register.vue";
@@ -58,6 +62,26 @@ const routes = [
         path: "/public-key",
         name: "PublicKey",
         component: PublicKey,
+    },
+    {
+        path: "/signed-message",
+        name: "SignedMessage",
+        component: SignedMessage,
+    },
+    {
+        path: "/encrypted-message",
+        name: "EncryptedMessage",
+        component: EncryptedMessage,
+    },
+    {
+        path: "/encrypted-file",
+        name: "EncryptedFile",
+        component: EncryptedFile,
+    },
+    {
+        path: "/steganography",
+        name: "Steganography",
+        component: Steganography,
     },
     {
         path: "/crypt",
