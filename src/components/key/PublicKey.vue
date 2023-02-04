@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import PrivateKeyField from '../fields/PrivateKeyField.vue'
 import PublicKeyField from '../fields/PublicKeyField.vue'
 import InstructionBlock from '../fields/InstructionBlock.vue'
@@ -65,7 +66,12 @@ export default {
         }
     },
     methods: {
-        
+        ...mapActions({
+            publicKey: 'keys/publicKey'
+        }),
+        clearForm() {
+            this.publicKey(null)
+        }
     }
 }
 

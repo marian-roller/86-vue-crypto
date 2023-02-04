@@ -9,7 +9,7 @@
             <textarea 
             id="private-key"
             class="form-control" 
-            rows="10" 
+            :rows="this.form.rows" 
             :value="form.privateKey"
             ></textarea>
         </div>
@@ -34,22 +34,33 @@ export default {
     data(){
         return {
             form: {
-                privateKey: ''
+                privateKey: '',
+                rows: null
             }
         }
     },
+    mounted() {
+        this.form.rows = 2
+    },
     methods: {
         ...mapActions({
-                publicKey: 'keys/publicKey'
-            }),
+            publicKey: 'keys/publicKey'
+        }),
         generatePrivateKey() {
             axios.post('key/get-keys', 
             {})
             .then((response) => {
                 this.form.privateKey = response.data.result.private_key
+                this.form.rows = 29
                 this.publicKey(response.data.result.public_key)
             })
         }
     }
 }
 </script>
+
+<style>
+    #private-key {
+        font-size: 0.75rem !important;
+    }
+</style>

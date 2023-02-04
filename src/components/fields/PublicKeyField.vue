@@ -9,7 +9,7 @@
             <textarea 
             id="public-key"
             class="form-control" 
-            rows="10" 
+            :rows="this.form.rows" 
             :value="publicKey"
             ></textarea>
         </div>
@@ -20,10 +20,36 @@
 import { mapGetters } from 'vuex'
 export default {
     name: 'PublicKeyField',
+    data(){
+        return {
+            form: {
+                rows: null
+            }
+        }
+    },
+    mounted() {
+        this.form.rows = 4
+    },
+    updated() {
+        this.checkRows;
+    },
     computed: {
         ...mapGetters({
             publicKey: 'keys/publicKey',
         }),
+        checkRows() {
+            if (this.publicKey) {
+                this.form.rows = 10
+            } else {
+                this.form.rows = 2
+            }
+        }
     }
 }
 </script>
+
+<style>
+    #public-key {
+        font-size: 0.75rem !important;
+    }
+</style>
