@@ -10,26 +10,20 @@
             id="public-key"
             class="form-control" 
             rows="10" 
-            :value="form.publicKey"
+            :value="publicKey"
             ></textarea>
         </div>
     </div>
 </template>
 
 <script>
-
+import { mapGetters } from 'vuex'
 export default {
     name: 'PublicKeyField',
-    components: {
-    },
-    data(){
-        return {
-            form: {
-                publicKey: ''
-            }
-        }
-    },
-    methods: {
+    computed: {
+        ...mapGetters({
+            publicKey: 'keys/publicKey',
+        }),
     }
 }
 </script>
