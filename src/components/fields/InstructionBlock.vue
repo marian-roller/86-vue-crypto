@@ -12,7 +12,7 @@
         </div>
 
         <div class="border-top border-bottom" v-if="type=='signed-message'">
-            1. signed-message
+            1. Write message. 2. Get public key. 3. Sign message. 4. Send. 5. Receive. 6. Verify
         </div>
 
         <div class="border-top border-bottom" v-if="type=='encrypted-message'">

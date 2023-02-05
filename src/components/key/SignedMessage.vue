@@ -16,7 +16,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <h4>Sign / Verify message</h4>
+                            <h4>Signed message</h4>
                         </div>
 
                         <div class="col-md-2">
@@ -30,8 +30,62 @@
                     </div>
                 </div>
 
-                <div class="card-body">
-                    Body
+                <div class="card-body p-0">
+                    <div class="row">
+                    
+                        <div class="col-md-6 pr-0">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-10 offset-md-2 font-weight-bold">
+                                        Sign and send
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card-body">
+                                    Message field - field
+                                    Generate public key - button
+                                    public key - field
+                                    sign the message - button
+                                    signature - field
+                                    send message and signature
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 pl-0">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-10 offset-md-2 font-weight-bold">
+                                        Receive and verify
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    Message field - field
+                                    public key - field
+                                    signature - field
+                                    verify - button
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>  
+                </div>
+
+                <div class="card-footer text-muted text-left small p-0">
+                    <div class="row m-0">
+                        <div class="col-md-6 p-3 border">
+                            message stutus
+                            (message: ?, keys: ?, signed with public key: ?, sent (message, public key and signature: ?))
+                        </div>
+                        <div class="col-md-6 p-3 border">
+                            message status
+                            (received: ?, verified: ?, verification status: sender and integrity confirmed / sender and/or integrity failed)
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
