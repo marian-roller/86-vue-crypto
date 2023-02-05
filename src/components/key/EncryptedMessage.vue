@@ -12,11 +12,11 @@
                         </div>
 
                         <div class="col-md-2 text-left">
-                            <small>{{ form.algorithm }}</small>
+                            <small>Test</small>
                         </div>
 
                         <div class="col-md-6">
-                            <h4>Private / Public keys generator</h4>
+                            <h4>Encrypt / Decrypt message</h4>
                         </div>
 
                         <div class="col-md-2">
@@ -26,48 +26,28 @@
                     </div>
 
                     <div class="row">
-                        <InstructionBlock type="public-key"/>
+                        <InstructionBlock type="encrypted-message"/>
                     </div>
                 </div>
 
                 <div class="card-body">
-                    <PrivateKeyField />
-                    <PublicKeyField />     
+                    Body
                 </div>
             </div>
         </section>
     </div>
 </template>
-
 <script>
-import { mapActions } from 'vuex'
-import PrivateKeyField from '../fields/PrivateKeyField.vue'
-import PublicKeyField from '../fields/PublicKeyField.vue'
 import InstructionBlock from '../fields/InstructionBlock.vue'
 export default {
-    name: 'PublicKey',
+    name: 'EncryptedMessage',
     components: {
-        PrivateKeyField,
-        PublicKeyField,
         InstructionBlock
     },
-    data() {
-        return {
-            form: {
-                algorithm: 'sha256'
-            }
-        }
-    },
     methods: {
-        ...mapActions({
-            publicKey: 'keys/publicKey',
-            privateKey: 'keys/privateKey'
-        }),
         clearForm() {
-            this.publicKey(null)
-            this.privateKey(null)
+
         }
     }
 }
-
 </script>

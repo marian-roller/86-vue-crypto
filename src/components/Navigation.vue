@@ -20,11 +20,21 @@
                             <router-link to="/hash" class="nav-link">Hashing</router-link>
                         </li>
 
-                        <li class="nav-item">
-                            <router-link to="/public-key" class="nav-link">Public key</router-link>
+                        <li class="nav-item dropdown">
+                            <a id="keysDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Key Pairs
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="keysDropdown">
+                                <router-link to="/public-key" class="nav-link">Keys generation</router-link>
+                                <router-link to="/signed-message" class="nav-link">Signed message</router-link>
+                                <router-link to="/encrypted-message" class="nav-link">Encrypted message</router-link>
+                                <router-link to="/encrypted-file" class="nav-link">Encrypted file</router-link>
+
+                            </div>
                         </li>
 
-                       <li class="nav-item dropdown">
+                        <li class="nav-item dropdown">
                             <a id="blockchainDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Blockchain
                             </a>
@@ -42,8 +52,7 @@
 
                             <div class="dropdown-menu" aria-labelledby="encryptionDropdown">
                                 <router-link to="/crypt" class="dropdown-item">Encryption</router-link>
-                                <router-link to="/" class="dropdown-item">PGP vizualization</router-link><!-- generate pkpk by rsa algorithm -->
-                                <router-link to="/" class="dropdown-item">Steganography</router-link>
+                                <router-link to="/steganography" class="dropdown-item">Steganography</router-link>
                             </div>
                         </li>
                         <li class="nav-item">
