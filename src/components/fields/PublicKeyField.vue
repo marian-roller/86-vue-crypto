@@ -5,7 +5,7 @@
                 <div>Public key:</div>
             </div>
         </div>
-        <div class="col-md-8">
+        <div :class="this.form.cols">
             <textarea 
             id="public-key"
             class="form-control" 
@@ -20,15 +20,25 @@
 import { mapGetters } from 'vuex'
 export default {
     name: 'PublicKeyField',
+    props: {
+        from: String,
+    },
     data(){
         return {
             form: {
-                rows: null
+                rows: null,
+                cols: null
             }
         }
     },
     mounted() {
         this.form.rows = 4
+        if (this.from === 'signedMessage') {
+            this.form.cols = "col-md-10";
+        } else {
+            this.form.cols = "col-md-8";
+        }
+        console.log(this.form.cols);
     },
     updated() {
         this.checkRows;

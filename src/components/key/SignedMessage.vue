@@ -44,12 +44,17 @@
                                 </div>
                                 
                                 <div class="card-body">
-                                    Message field - field
-                                    Generate public key - button
-                                    public key - field
-                                    sign the message - button
-                                    signature - field
-                                    send message and signature
+                                    <DataField @keyup="sendToConvert" />
+                                    <div class="row my-3">
+                                        <div class="col-md-10 offset-md-2">
+                                            <KeysButton @click="generatePrivateKey"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <PublicKeyField from="signedMessage"/>     
+                                    <SignatureButton />
+                                    <SignatureField />
+                                    <SendMessageButton />
                                 </div>
                             </div>
                         </div>
@@ -92,16 +97,49 @@
     </div>
 </template>
 <script>
+import axios from 'axios'
+import { mapActions, mapGetters } from 'vuex'
 import InstructionBlock from '../fields/InstructionBlock.vue'
+import DataField from '../fields/DataField.vue'
+import PublicKeyField from '../fields/PublicKeyField.vue'
+import KeysButton from '../fields/KeysButton.vue'
+import SignatureButton from '../fields/SignatureButton.vue'
+import SendMessageButton from '../fields/SendMessageButton.vue'
+import SignatureField from '../fields/SignatureField.vue'
 export default {
     name: 'SignedMessage',
     components: {
-        InstructionBlock
+        InstructionBlock,
+        DataField,
+        PublicKeyField,
+        KeysButton,
+        SignatureButton,
+        SendMessageButton,
+        SignatureField
     },
     methods: {
         clearForm() {
 
+        },
+        ...mapGetters({
+            // publicKeyGet: 'keys/publicKey',
+        }),
+        ...mapActions({
+            publicKey: 'keys/publicKey',
+            privateKey: 'keys/privateKey',
+        }),
+        generatePrivateKey() {
+            axios.post('key/get-keys', 
+            {})
+            .then((response) => {
+                this.publicKey(response.data.result.public_key)
+                this.privateKey(response.data.result.private_key)
+            })
+        },
+        sendToConvert() {
+
         }
+
     }
 }
 </script>
