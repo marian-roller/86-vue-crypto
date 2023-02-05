@@ -44,7 +44,7 @@
                                 </div>
                                 
                                 <div class="card-body">
-                                    <DataField @keyup="sendToConvert" />
+                                    <MessageField @keyup="sendToConvert" />
                                     <div class="row my-3">
                                         <div class="col-md-10 offset-md-2">
                                             <KeysButton @click="generatePrivateKey"/>
@@ -98,32 +98,29 @@
 </template>
 <script>
 import axios from 'axios'
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 import InstructionBlock from '../fields/InstructionBlock.vue'
-import DataField from '../fields/DataField.vue'
 import PublicKeyField from '../fields/PublicKeyField.vue'
 import KeysButton from '../fields/KeysButton.vue'
 import SignatureButton from '../fields/SignatureButton.vue'
 import SendMessageButton from '../fields/SendMessageButton.vue'
 import SignatureField from '../fields/SignatureField.vue'
+import MessageField from '../fields/MessageField.vue'
 export default {
     name: 'SignedMessage',
     components: {
         InstructionBlock,
-        DataField,
         PublicKeyField,
         KeysButton,
         SignatureButton,
         SendMessageButton,
-        SignatureField
+        SignatureField,
+        MessageField
     },
     methods: {
         clearForm() {
 
         },
-        ...mapGetters({
-            // publicKeyGet: 'keys/publicKey',
-        }),
         ...mapActions({
             publicKey: 'keys/publicKey',
             privateKey: 'keys/privateKey',
