@@ -38,7 +38,6 @@ export default {
         } else {
             this.form.cols = "col-md-8";
         }
-        console.log(this.form.cols);
     },
     updated() {
         this.checkRows;
