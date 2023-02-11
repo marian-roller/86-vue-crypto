@@ -10,6 +10,7 @@
             id="message-field"
             class="form-control" 
             :rows="4" 
+            v-model="value"
             ></textarea>
         </div>
     </div>
@@ -17,6 +18,18 @@
 
 <script>
 export default {
-    name: 'MessageField'
+    name: 'MessageField',
+    props: ['modelValue'],
+    emits: ['update:modelValue'],
+    computed: {
+        value: {
+            get() {
+                return this.modelValue
+            },
+            set(value) {
+                this.$emit('update:modelValue', value)
+            }
+        }
+    }
 }
 </script>

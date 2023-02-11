@@ -44,7 +44,7 @@
                                 </div>
                                 
                                 <div class="card-body">
-                                    <MessageField @keyup="sendToConvert" />
+                                    <MessageField v-model="form.raw_message" />
                                     <div class="row my-3">
                                         <div class="col-md-10 offset-md-2">
                                             <KeysButton @click="generatePrivateKey"/>
@@ -52,7 +52,7 @@
                                     </div>
                                     
                                     <PublicKeyField from="signedMessage"/>     
-                                    <SignatureButton />
+                                    <SignatureButton @click="signMessage" />
                                     <SignatureField />
                                     <SendMessageButton />
                                 </div>
@@ -98,7 +98,7 @@
 </template>
 <script>
 import axios from 'axios'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import InstructionBlock from '../fields/InstructionBlock.vue'
 import PublicKeyField from '../fields/PublicKeyField.vue'
 import KeysButton from '../fields/KeysButton.vue'
@@ -117,10 +117,20 @@ export default {
         SignatureField,
         MessageField
     },
+    data() {
+        return {
+            form: {
+                raw_message: ''
+            }
+        }
+    },
     methods: {
         clearForm() {
 
         },
+        ...mapGetters({
+            privateKeyGet: 'keys/privateKey',
+        }),
         ...mapActions({
             publicKey: 'keys/publicKey',
             privateKey: 'keys/privateKey',
@@ -133,8 +143,15 @@ export default {
                 this.privateKey(response.data.result.private_key)
             })
         },
-        sendToConvert() {
-
+        signMessage() {
+            axios.post('key/sign-message', 
+            {
+                raw_message: this.form.raw_message,
+                private_key: this.privateKeyGet(),
+            })
+            .then((response) => {
+                console.log(response.data.result);
+            })
         }
 
     }
