@@ -24,3 +24,9 @@ export default {
     },
 }
 </script>
+
+<style>
+    #signature-field {
+        font-size: 0.75rem !important;
+    }
+</style>

@@ -54,7 +54,7 @@
                                     <PublicKeyField from="signedMessage"/>     
                                     <SignatureButton @click="signMessage" />
                                     <SignatureField :signature="form.signature" />
-                                    <SendMessageButton />
+                                    <SendMessageButton @click="sendMessage"/>
                                 </div>
                             </div>
                         </div>
@@ -69,10 +69,12 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    Message field - field
-                                    public key - field
-                                    signature - field
-                                    verify - button
+
+                                    <MessageField />
+                                    <PublicKeyField /> 
+                                    <SignatureField />
+                                    <VerifyMessageButton />
+            
                                 </div>
                             </div>
                         </div>
@@ -106,6 +108,7 @@ import SignatureButton from '../fields/SignatureButton.vue'
 import SendMessageButton from '../fields/SendMessageButton.vue'
 import SignatureField from '../fields/SignatureField.vue'
 import MessageField from '../fields/MessageField.vue'
+import VerifyMessageButton from '../fields/VerifyMessageButton.vue'
 export default {
     name: 'SignedMessage',
     components: {
@@ -115,7 +118,8 @@ export default {
         SignatureButton,
         SendMessageButton,
         SignatureField,
-        MessageField
+        MessageField,
+        VerifyMessageButton
     },
     data() {
         return {
@@ -127,10 +131,14 @@ export default {
     },
     methods: {
         clearForm() {
-
+            this.publicKey(null)
+            this.privateKey(null)
+            this.form.raw_message = ''
+            this.form.signature = ''
         },
         ...mapGetters({
             privateKeyGet: 'keys/privateKey',
+            publicKeyGet: 'keys/publicKey',
         }),
         ...mapActions({
             publicKey: 'keys/publicKey',
@@ -147,14 +155,18 @@ export default {
         signMessage() {
             axios.post('key/sign-message', 
             {
-                raw_message: this.form.raw_message,
+                message: this.form.raw_message,
                 private_key: this.privateKeyGet(),
             })
             .then((response) => {
                 this.form.signature = response.data.result.signature
             })
+        },
+        sendMessage() {
+            console.log(this.form.raw_message);
+            console.log(this.form.signature);
+            console.log(this.publicKeyGet());
         }
-
     }
 }
 </script>
