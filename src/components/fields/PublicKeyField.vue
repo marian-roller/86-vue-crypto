@@ -7,10 +7,9 @@
         </div>
         <div :class="this.form.cols">
             <textarea 
-            id="public-key"
-            class="form-control" 
+            class="form-control public-key" 
             :rows="this.form.rows" 
-            :value="publicKey"
+            :value="display ? publicKey : ''"
             ></textarea>
         </div>
     </div>
@@ -22,12 +21,13 @@ export default {
     name: 'PublicKeyField',
     props: {
         from: String,
+        display: Boolean
     },
     data(){
         return {
             form: {
                 rows: null,
-                cols: null
+                cols: null,
             }
         }
     },
@@ -58,7 +58,7 @@ export default {
 </script>
 
 <style>
-    #public-key {
+    .public-key {
         font-size: 0.75rem !important;
     }
 </style>

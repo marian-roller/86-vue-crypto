@@ -51,10 +51,10 @@
                                         </div>
                                     </div>
                                     
-                                    <PublicKeyField from="signedMessage"/>     
+                                    <PublicKeyField from="signedMessage" :display="true" />     
                                     <SignatureButton @click="signMessage" />
-                                    <SignatureField />
-                                    <SendMessageButton />
+                                    <SignatureField :signature="form.signature" :display="true" />
+                                    <SendMessageButton @click="sendMessage"/>
                                 </div>
                             </div>
                         </div>
@@ -69,10 +69,12 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    Message field - field
-                                    public key - field
-                                    signature - field
-                                    verify - button
+
+                                    <MessageField v-model="form.sent_message" />
+                                    <PublicKeyField from="signedMessage" :display="form.display"/> 
+                                    <SignatureField :signature="form.signature" :display="form.display" />
+                                    <VerifyMessageButton />
+            
                                 </div>
                             </div>
                         </div>
@@ -106,6 +108,7 @@ import SignatureButton from '../fields/SignatureButton.vue'
 import SendMessageButton from '../fields/SendMessageButton.vue'
 import SignatureField from '../fields/SignatureField.vue'
 import MessageField from '../fields/MessageField.vue'
+import VerifyMessageButton from '../fields/VerifyMessageButton.vue'
 export default {
     name: 'SignedMessage',
     components: {
@@ -115,29 +118,36 @@ export default {
         SignatureButton,
         SendMessageButton,
         SignatureField,
-        MessageField
+        MessageField,
+        VerifyMessageButton
     },
     data() {
         return {
             form: {
-                raw_message: ''
+                raw_message: '',
+                sent_message: '',
+                signature: '',
+                display: false
             }
         }
     },
     methods: {
         clearForm() {
-
+            this.publicKey(null)
+            this.privateKey(null)
+            this.form.raw_message = ''
+            this.form.signature = ''
         },
         ...mapGetters({
             privateKeyGet: 'keys/privateKey',
+            publicKeyGet: 'keys/publicKey',
         }),
         ...mapActions({
             publicKey: 'keys/publicKey',
             privateKey: 'keys/privateKey',
         }),
         generatePrivateKey() {
-            axios.post('key/get-keys', 
-            {})
+            axios.post('key/get-keys', {})
             .then((response) => {
                 this.publicKey(response.data.result.public_key)
                 this.privateKey(response.data.result.private_key)
@@ -146,14 +156,17 @@ export default {
         signMessage() {
             axios.post('key/sign-message', 
             {
-                raw_message: this.form.raw_message,
+                message: this.form.raw_message,
                 private_key: this.privateKeyGet(),
             })
             .then((response) => {
-                console.log(response.data.result);
+                this.form.signature = response.data.result.signature
             })
+        },
+        sendMessage() {
+            this.form.display = true;
+            this.form.sent_message = this.form.raw_message;
         }
-
     }
 }
 </script>
