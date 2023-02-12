@@ -9,8 +9,8 @@
             <textarea 
             id="signature-field"
             class="form-control" 
-            :rows="4" 
-            :value="signature"
+            :rows="4"
+            :value="display ? signature : ''"
             ></textarea>
         </div>
     </div>
@@ -20,7 +20,8 @@
 export default {
     name: 'SignatureField',
     props: {
-        signature: String
+        signature: String,
+        display: Boolean
     },
 }
 </script>

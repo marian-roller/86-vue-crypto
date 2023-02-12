@@ -51,9 +51,9 @@
                                         </div>
                                     </div>
                                     
-                                    <PublicKeyField from="signedMessage"/>     
+                                    <PublicKeyField from="signedMessage" :display="true" />     
                                     <SignatureButton @click="signMessage" />
-                                    <SignatureField :signature="form.signature" />
+                                    <SignatureField :signature="form.signature" :display="true" />
                                     <SendMessageButton @click="sendMessage"/>
                                 </div>
                             </div>
@@ -70,9 +70,9 @@
                                 </div>
                                 <div class="card-body">
 
-                                    <MessageField />
-                                    <PublicKeyField /> 
-                                    <SignatureField />
+                                    <MessageField v-model="form.sent_message" />
+                                    <PublicKeyField from="signedMessage" :display="form.display"/> 
+                                    <SignatureField :signature="form.signature" :display="form.display" />
                                     <VerifyMessageButton />
             
                                 </div>
@@ -125,7 +125,9 @@ export default {
         return {
             form: {
                 raw_message: '',
-                signature: ''
+                sent_message: '',
+                signature: '',
+                display: false
             }
         }
     },
@@ -145,8 +147,7 @@ export default {
             privateKey: 'keys/privateKey',
         }),
         generatePrivateKey() {
-            axios.post('key/get-keys', 
-            {})
+            axios.post('key/get-keys', {})
             .then((response) => {
                 this.publicKey(response.data.result.public_key)
                 this.privateKey(response.data.result.private_key)
@@ -163,9 +164,8 @@ export default {
             })
         },
         sendMessage() {
-            console.log(this.form.raw_message);
-            console.log(this.form.signature);
-            console.log(this.publicKeyGet());
+            this.form.display = true;
+            this.form.sent_message = this.form.raw_message;
         }
     }
 }
