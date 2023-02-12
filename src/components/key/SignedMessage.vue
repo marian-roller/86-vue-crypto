@@ -53,7 +53,7 @@
                                     
                                     <PublicKeyField from="signedMessage"/>     
                                     <SignatureButton @click="signMessage" />
-                                    <SignatureField />
+                                    <SignatureField :signature="form.signature" />
                                     <SendMessageButton />
                                 </div>
                             </div>
@@ -120,7 +120,8 @@ export default {
     data() {
         return {
             form: {
-                raw_message: ''
+                raw_message: '',
+                signature: ''
             }
         }
     },
@@ -150,7 +151,7 @@ export default {
                 private_key: this.privateKeyGet(),
             })
             .then((response) => {
-                console.log(response.data.result);
+                this.form.signature = response.data.result.signature
             })
         }
 
