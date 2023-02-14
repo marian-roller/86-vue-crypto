@@ -15,8 +15,8 @@
                 <div class="card-body p-0">
                     <div class="row">
                     
-                        <div class="col-md-6 pr-0">
-                            <div class="card">
+                        <div class="col-md-6 pr-md-0">
+                            <div class="card h-100">
                                 <div class="card-header">
                                     <div class="row">
                                         <div class="col-md-10 offset-md-2 font-weight-bold">Encryption</div>
@@ -38,8 +38,8 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 pl-0">
-                            <div class="card">
+                        <div class="col-md-6 pl-md-0">
+                            <div class="card h-100">
                                 <div class="card-header">
                                     <div class="row">
                                         <div class="col-md-10 offset-md-2 font-weight-bold">Decryption</div>

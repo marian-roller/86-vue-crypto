@@ -1,6 +1,6 @@
 <template>
     <div class="row mt-3">
-        <div class="col-md-2 pr-0">
+        <div class="col-md-2 pr-md-0">
             <div class="font-weight-bold small">{{ this.label }}</div>
         </div>
         <div class="col-md-10">
