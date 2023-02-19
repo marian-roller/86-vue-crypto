@@ -6,7 +6,7 @@ import { store } from './store'
 
 import "@/store/subscriber"
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000/api/'
+axios.defaults.baseURL = import.meta.env.VITE_API_URL
 
 store.dispatch('auth/attempt', localStorage.getItem('token')).then(() => {
     createApp(App).use(router).use(store).mount('#app')
