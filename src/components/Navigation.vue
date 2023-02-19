@@ -12,9 +12,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
             
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <router-link to="/" class="nav-link active">Home</router-link>
-                        </li>
+                        </li> -->
 
                         <li class="nav-item">
                             <router-link to="/hash" class="nav-link">Hashing</router-link>
@@ -55,9 +55,9 @@
                                 <router-link to="/steganography" class="dropdown-item">Steganography</router-link>
                             </div>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <router-link to="/" class="nav-link">Encrypted chat</router-link>
-                        </li>
+                        </li> -->
                     </ul>
 
                     <ul class="navbar-nav ml-auto">
