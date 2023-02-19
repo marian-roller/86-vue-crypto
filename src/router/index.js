@@ -1,5 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
 import TheWelcome from "@/components/TheWelcome.vue";
+import Home from "@/components/Home.vue";
 import Hash from "@/components/hash/Hash.vue";
 import Block from "@/components/blockchain/Block.vue";
 import Blockchain from "@/components/blockchain/Blockchain.vue";
@@ -18,7 +19,7 @@ const routes = [
     {
         path: "/",
         name: "home",
-        component: TheWelcome,
+        component: Home,
     },
     {
         path: "/dashboard",

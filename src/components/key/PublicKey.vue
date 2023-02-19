@@ -32,7 +32,7 @@
 
                 <div class="card-body">
                     <PrivateKeyField />
-                    <PublicKeyField />     
+                    <PublicKeyField from="publiKey" :display="form.display"/>     
                 </div>
             </div>
         </section>
@@ -54,7 +54,8 @@ export default {
     data() {
         return {
             form: {
-                algorithm: 'sha256'
+                algorithm: 'sha256',
+                display: true
             }
         }
     },

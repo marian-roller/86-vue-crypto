@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="card-body">
-                    Body
+                    Coming soon...
                 </div>
             </div>
         </section>

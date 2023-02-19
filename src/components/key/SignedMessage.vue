@@ -71,7 +71,7 @@
                                 <div class="card-body">
 
                                     <MessageField v-model="form.sent_message" />
-                                    <PublicKeyField from="signedMessage" :display="form.display"/> 
+                                    <PublicKeyField from="signedMessage" :display="form.display" /> 
                                     <SignatureField :signature="form.signature" :display="form.display" />
                                     <VerifyMessageButton />
             
