@@ -14,7 +14,7 @@
             >
         </div>
         <div class="col-md-8">
-            <small>Enter desired hash start (max. 5 numeric digits). Default is '00'</small>
+            <small>Enter desired hash start (max. {{ max }} numeric digits). Default is '00'</small>
         </div>
     </div>
 </template>
@@ -36,7 +36,7 @@ export default {
     },
     data() {
         return {
-            max: 5,
+            max: 6,
         }
     }
 }
